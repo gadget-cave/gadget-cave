@@ -10,9 +10,9 @@ const products = [
     image: "https://via.placeholder.com/150",
   },
   {
-    name: "USB Fan",
-    price: 199,
-    image: "https://via.placeholder.com/150",
+    name: "samsung watch with airpods",
+    price: 1199,
+    image: "./images/samsung watch with airpods.jpg"//
   }
 ];
 
