@@ -12,7 +12,7 @@ const products = [
   {
     name: "samsung watch with airpods",
     price: 1199,
-    image: "C:\Users\hixza\OneDrive\Desktop\images
+    image: "https://via.placeholder.com/150",
   }
 ];
 
