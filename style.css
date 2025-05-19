@@ -1,61 +1,50 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #f8f9fa;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
   color: #333;
-  margin: 0;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 20px;
+header.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ccc;
 }
 
-h1 {
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.site-title {
+  font-size: 1.8rem;
   color: #2c3e50;
-  font-size: 2.5rem;
-  margin: 0;
+}
+
+#search-input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 220px;
 }
 
 #product-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  padding: 10px;
-}
-
-.product {
-  background: #fff;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.product img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.whatsapp-btn {
-  margin-top: 10px;
-  background-color: #25D366;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-/* Remove underline from links */
-a {
-  text-decoration: none;
-  color: inherit;
+  padding: 20px;
 }
 
 .product {
@@ -65,15 +54,47 @@ a {
   padding: 15px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  margin: 10px;
 }
 
 .product img {
   width: 100%;
-  max-width: 200px;
-  height: auto;
-  margin-bottom: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
+.whatsapp-btn {
+  margin-top: 10px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+@media (max-width: 600px) {
+  header.header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #search-input {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    height: 45px;
+  }
+}
 
