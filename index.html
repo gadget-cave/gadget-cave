@@ -8,13 +8,12 @@
 </head>
 <body>
   <header>
-    <!-- ✅ Logo added here -->
     <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
     <h1 class="site-title">Gadget Cave</h1>
   </header>
 
   <section id="product-list" class="product-list">
-    <!-- Products will be added by JavaScript -->
+    <!-- Products will be added here by JavaScript -->
   </section>
 
   <script src="products.js"></script>
@@ -22,6 +21,7 @@
     const container = document.getElementById("product-list");
     products.forEach(product => {
       const item = document.createElement("div");
+      item.classList.add("product-item");
       item.innerHTML = `
         <h2>${product.name}</h2>
         <img src="${product.image}" alt="${product.name}">
