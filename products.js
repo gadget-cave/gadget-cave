@@ -22,6 +22,24 @@ const products = [
     image: "https://i.ibb.co/9HTJwrjN/CASIO-G-SHOCK.jpg",
     description: "Awesome quality, chain model.",
     price: "₹999"
+  },
+   {
+    name: "TRACKON - watch",
+    image: "https://i.ibb.co/sp6nVFHD/TRACKON-watch.jpg",
+    description: "Awesome quality,trending model.",
+    price: "₹599"
+  },
+   {
+    name: "Marshal Ember ANC - earpods",
+    image: "https://i.ibb.co/8nfGR3vk/Marshal-Ember-ANC-earpod.jpg",
+    description: "High-quality sound,6 eartips,1 charging cable.",
+    price: "₹999"
+  },
+   {
+    name: "MZ bluetooth speaker",
+    image: "https://i.ibb.co/gZYPxgYS/MZ-bluetooth-speaker.jpg",
+    description: "High-quality sound and trending model.",
+    price: "₹699"
   }
 ];
 
