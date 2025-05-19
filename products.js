@@ -1,7 +1,7 @@
 const products = [
   {
-    name: "Wireless Earbuds",
-    image: "https://via.placeholder.com/200x200.png?text=Earbuds",
+    name: "Wireless Earbuds-CMF BY NOTHING",
+    image: "https://i.ibb.co/cXhm2q40/earphones.jpg",
     description: "High-quality sound and battery life.",
     price: "₹899"
   },
