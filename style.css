@@ -18,9 +18,13 @@ header {
   margin-bottom: 30px;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  h1 {
+  font-size: 3.5rem;     /* ഇപ്പോഴുള്ളത് 2.5rem ന്ന് പകരം */
+  color: #e67e22;        /* ഇഷ്ടാനുസൃതമായ कलർ (ഇത് ഓറഞ്ച് തോണിയുള്ള कलർ) */
+  font-weight: 800;      /* കിടിലൻ, കുറച്ച് bold */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* ചുരുക്കിയുണ്ടെങ്കിൽ സുന്ദരം */
+}
+
 }
 
 .product-list {
