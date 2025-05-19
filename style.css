@@ -1,48 +1,45 @@
-/* General styles */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f8f9fa;
+/* Reset some default margins/paddings */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  padding: 20px;
   color: #333;
 }
 
 /* Header styling */
 header {
   text-align: center;
-  padding: 20px 0;
-  background-color: #ffffff;
+  margin-bottom: 30px;
 }
 
 .logo {
-  width: 150px;
-  height: auto;
   display: block;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 20px auto;
+  width: 180px;
+  height: auto;
 }
 
-/*mobile-specific style*/
-@media (max-width:600px) {
-  .logo {
-    width: 150px;
-  }
-}
-
-.site-title {
-  font-size: 2.2rem;
-  font-weight: 700;
+h1 {
+  font-size: 2.8rem; /* big heading */
   color: #2c3e50;
-  margin: 0;
+  font-weight: 700;
 }
 
-/* Product section */
-.product-list {
+/* Product list grid */
+#product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 0 10px;
 }
 
+/* Each product box */
 .product-item {
   background: #fff;
   border: 1px solid #ddd;
@@ -50,29 +47,60 @@ header {
   padding: 15px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Product images */
 .product-item img {
   width: 100%;
+  max-height: 200px;
+  object-fit: contain;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-/* WhatsApp button */
+/* WhatsApp button styling */
 .whatsapp-btn {
-  margin-top: 10px;
+  margin-top: 15px;
   background-color: #25D366;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
-/* Remove link blue underline */
-a {
-  text-decoration: none !important;
+.whatsapp-btn:hover {
+  background-color: #1ebe57;
+}
+
+/* Remove underline and keep button color inside link */
+.whatsapp-link {
+  text-decoration: none;
   color: inherit;
+  display: inline-block;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .logo {
+    width: 130px;
+  }
+
+  .product-item img {
+    max-height: 150px;
+  }
+  
+  .whatsapp-btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
 }
