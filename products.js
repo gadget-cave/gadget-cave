@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: "samsung watch with airpods",
-    image: "./samsung watch with airpods.jpg",
+    image: "https://via.placeholder.com/200x200.png?text=Smart+Watch",
     description: "Fitness tracker and call support.",
     price: "₹1199"
   }
