@@ -28,10 +28,8 @@
         <img src="${product.image}" alt="Image of ${product.name}" loading="lazy" />
         <p>${product.description}</p>
         <strong>${product.price}</strong>
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-          <button class="whatsapp-btn" aria-label="Order ${product.name} on WhatsApp">
-            Order on WhatsApp
-          </button>
+        <a class="whatsapp-btn" href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+          Order on WhatsApp
         </a>
       `;
       container.appendChild(item);
