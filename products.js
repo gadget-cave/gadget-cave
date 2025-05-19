@@ -22,4 +22,5 @@ const products = [
     image: "https://i.ibb.co/9HTJwrjN/CASIO-G-SHOCK.jpg",
     description: "Awesome quality,chain model.",
     price: "₹999"
+  }
 ];
