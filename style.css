@@ -1,34 +1,73 @@
-/* Basic body and page styling */
+/* Reset and body */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f8f9fa;
-  padding: 20px;
-  color: #333;
+  padding: 0;
   margin: 0;
+  color: #333;
 }
 
+/* Header with logo left, text right */
 header {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 15px 25px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-/* Logo style */
+.header-left {
+  flex: 0 0 auto;
+}
+
 .logo {
-  height: 55px;
+  height: 70px;
   width: auto;
-  margin-right: 15px;
 }
 
-/* Site title next to logo */
-.site-title {
-  font-size: 1.8rem;
-  color: #2c3e50;
+.header-right {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+.header-right h1 {
   margin: 0;
-  font-weight: 700;
+  font-size: 2.3rem;
+  color: #2c3e50;
+  line-height: 1.1;
+}
+
+.header-right h3 {
+  margin: 4px 0 0 0;
+  font-weight: 400;
+  color: #666;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+/* Search bar container */
+.search-container {
+  padding: 10px 25px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#productSearch {
+  width: 100%;
+  max-width: 450px;
+  padding: 12px 15px;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#productSearch:focus {
+  border-color: #25D366;
+  box-shadow: 0 0 8px #25D366;
 }
 
 /* Product list grid */
@@ -36,10 +75,10 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  padding: 0 20px 20px 20px;
+  padding: 20px 25px 40px 25px;
 }
 
-/* Individual product box */
+/* Product card */
 .product {
   background: #fff;
   border: 1px solid #ddd;
@@ -49,16 +88,14 @@ header {
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* Product image style */
 .product img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  max-height: 180px;
   object-fit: contain;
-  max-height: 200px;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 
-/* WhatsApp order button */
 .whatsapp-btn {
   margin-top: 10px;
   background-color: #25D366;
@@ -76,26 +113,43 @@ header {
   background-color: #1ebe5b;
 }
 
-/* Remove underline and inherit color from parent for links */
+/* Links without underline */
 a {
   text-decoration: none !important;
   color: inherit;
 }
 
-/* Responsive styles for mobile devices */
+/* Responsive for mobile */
 @media (max-width: 600px) {
   header {
-    padding: 10px 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 15px;
   }
+
   .logo {
-    height: 40px;
-    margin-right: 10px;
+    height: 50px;
   }
-  .site-title {
-    font-size: 1.3rem;
+
+  .header-right {
+    text-align: center;
+    min-width: unset;
   }
-  #product-list {
-    padding: 0 15px 15px 15px;
+
+  .header-right h1 {
+    font-size: 1.7rem;
+  }
+
+  .header-right h3 {
+    font-size: 1rem;
+  }
+
+  .search-container {
+    padding: 15px;
+  }
+
+  #productSearch {
+    max-width: 100%;
   }
 }
-
