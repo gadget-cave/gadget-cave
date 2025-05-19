@@ -1,15 +1,15 @@
 const products = [
   {
-    name: "Wireless Earbuds-CMF BY NOTHING",
+    name: "Wireless Earphones-CMF BY NOTHING",
     image: "https://i.ibb.co/cXhm2q40/earphones.jpg",
     description: "High-quality sound and battery life.",
     price: "₹899"
   },
   {
-    name: "Smart Watch",
-    image: "https://via.placeholder.com/200x200.png?text=Smart+Watch",
-    description: "Fitness tracker and call support.",
-    price: "₹1499"
+    name: "SHEADPHONES-P9",
+    image: "https://i.ibb.co/vCJrF2NZ/headphonesp9.jpg",
+    description: "high quality,C-type charging",
+    price: "₹699"
   },
   {
     name: "Samsung Watch with Airpods",
