@@ -12,7 +12,8 @@ const products = [
   {
     name: "samsung watch with airpods",
     price: 1199,
-    image: "https://via.placeholder.com/150",
+    discription:"track your fitness and notifications on the go"
+    image: "image/samsung watch with airpods.jpg",
   }
 ];
 
