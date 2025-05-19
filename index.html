@@ -4,30 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gadget Cave</title>
+
+  <!-- Link to style.css -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="header">
-    <div class="logo-container">
+  <header>
+    <div class="header-left">
       <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
-      <h1 class="site-title">Gadget Cave</h1>
     </div>
-    <input type="text" id="search-input" placeholder="Search products..." />
+    <div class="header-right">
+      <h1>Gadget Cave</h1>
+      <h3>Your one-stop gadget store</h3>
+    </div>
   </header>
+
+  <div class="search-container">
+    <input
+      type="text"
+      id="productSearch"
+      placeholder="Search products..."
+      onkeyup="searchProducts()"
+    />
+  </div>
 
   <div id="product-list"></div>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
-    const searchInput = document.getElementById("search-input");
 
-    function displayProducts(filteredProducts) {
-      container.innerHTML = "";
-      filteredProducts.forEach(product => {
+    function displayProducts(productsToShow) {
+      container.innerHTML = '';
+      productsToShow.forEach(product => {
         const productBox = document.createElement("div");
         productBox.classList.add("product");
+
         productBox.innerHTML = `
           <img src="${product.image}" alt="${product.name}" />
           <h2>${product.name}</h2>
@@ -37,17 +50,25 @@
             <button class="whatsapp-btn">Order on WhatsApp</button>
           </a>
         `;
+
         container.appendChild(productBox);
       });
     }
 
-    searchInput.addEventListener("input", () => {
-      const searchTerm = searchInput.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm));
-      displayProducts(filtered);
-    });
-
+    // Initial display
     displayProducts(products);
+
+    // Search function
+    function searchProducts() {
+      const query = document.getElementById("productSearch").value.toLowerCase();
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query)
+      );
+      displayProducts(filteredProducts);
+    }
   </script>
+
 </body>
 </html>
+
