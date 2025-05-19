@@ -16,5 +16,10 @@ const products = [
     image: "https://i.ibb.co/S4KZqPkG/samsung-watch-with-airpods.jpg",
     description: "Fitness tracker and call support.",
     price: "₹1199"
-  }
+  },
+  {
+     name: "CASIO G-SHOCK",
+    image: "https://i.ibb.co/9HTJwrjN/CASIO-G-SHOCK.jpg",
+    description: "Awesome quality,chain model.",
+    price: "₹999"
 ];
