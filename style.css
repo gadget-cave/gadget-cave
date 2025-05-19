@@ -15,10 +15,17 @@ header {
 }
 
 .logo {
-  width: 180px;
+  width: 140px;
   height: auto;
   display: block;
   margin: 0 auto 10px auto;
+}
+
+/*mobile-specific style*/
+@media (max-width:600px) {
+  .logo {
+    width: 150px;
+  }
 }
 
 .site-title {
