@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-  <img src="https://gadget-cave.github.io/gadget-cave/gadget%20cave.png" alt="Gadget Cave Logo" class="logo" />
-  <h1>Gadget Cave</h1>
-</header>
+    <img src="https://gadget-cave.github.io/gadget-cave/gadget%20cave.png" alt="Gadget Cave Logo" class="logo" />
+    <h1>Gadget Cave</h1>
+  </header>
 
-  <section id="product-list" class="product-list">
-    <!-- Products will be added here by JavaScript -->
-  </section>
+  <section id="product-list" class="product-list"></section>
 
   <script src="products.js"></script>
   <script>
@@ -24,10 +22,10 @@
       item.classList.add("product-item");
       item.innerHTML = `
         <h2>${product.name}</h2>
-        <img src="${product.image}" alt="${product.name}">
+        <img src="${product.image}" alt="${product.name}" />
         <p>${product.description}</p>
-        <strong>${product.price}</strong><br>
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+        <strong>${product.price}</strong><br />
+        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank" class="whatsapp-link">
           <button class="whatsapp-btn">Order on WhatsApp</button>
         </a>
       `;
