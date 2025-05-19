@@ -12,8 +12,8 @@ const products = [
     price: "₹1499"
   },
   {
-    name: "Samsung Watch with AirPods",
-    image: "./samsung_watch_with_airpods.jpg",  /* ensure this file is in same folder or use valid URL */
+    name: "Samsung Watch with Airpods",
+    image: "./samsung_watch_with_airpods.jpg",
     description: "Fitness tracker and call support.",
     price: "₹1199"
   }
