@@ -11,23 +11,21 @@
     <h1>Gadget Cave</h1>
   </header>
 
-  <main>
-    <section id="product-list" class="product-list" aria-label="Product List">
-      <!-- Products injected by JavaScript -->
-    </section>
-  </main>
+  <section id="product-list">
+    <!-- Products will be added here by JavaScript -->
+  </section>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
     products.forEach(product => {
-      const item = document.createElement("article");
-      item.classList.add("product-item");
+      const item = document.createElement("div");
+      item.classList.add("product-card");
       item.innerHTML = `
         <h2>${product.name}</h2>
-        <img src="${product.image}" alt="Image of ${product.name}" loading="lazy" />
+        <img src="${product.image}" alt="${product.name}" />
         <p>${product.description}</p>
-        <strong>${product.price}</strong>
+        <strong>${product.price}</strong><br />
         <a class="whatsapp-btn" href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
           Order on WhatsApp
         </a>
