@@ -4,34 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gadget Cave</title>
+
+  <!-- Link to style.css -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <header>
-    <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
     <h1>Gadget Cave</h1>
   </header>
 
-  <section id="product-list" class="product-list"></section>
+  <!-- Product list container -->
+  <div id="product-list"></div>
 
+  <!-- Load products.js before script that uses 'products' -->
   <script src="products.js"></script>
+
+  <!-- Script to create product cards dynamically -->
   <script>
     const container = document.getElementById("product-list");
+
     products.forEach(product => {
-      const item = document.createElement("div");
-      item.classList.add("product-item");
-      item.innerHTML = `
-        <h2>${product.name}</h2>
+      const productBox = document.createElement("div");
+      productBox.classList.add("product");
+
+      productBox.innerHTML = `
         <img src="${product.image}" alt="${product.name}" />
+        <h2>${product.name}</h2>
         <p>${product.description}</p>
-        <strong>${product.price}</strong><br />
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank" class="whatsapp-link">
+        <strong>${product.price}</strong><br>
+        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
           <button class="whatsapp-btn">Order on WhatsApp</button>
         </a>
       `;
-      container.appendChild(item);
+
+      container.appendChild(productBox);
     });
   </script>
+
 </body>
 </html>
-
