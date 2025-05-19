@@ -9,13 +9,11 @@
 <body>
 
   <header>
-    <div class="header-container">
+    <div class="header-row">
       <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
       <h1>Gadget Cave</h1>
     </div>
-    <div class="search-container">
-      <input type="text" id="productSearch" placeholder="Search products..." />
-    </div>
+    <input type="text" id="productSearch" placeholder="Search products..." />
   </header>
 
   <div id="product-list"></div>
@@ -25,35 +23,32 @@
     const container = document.getElementById("product-list");
     const searchInput = document.getElementById("productSearch");
 
-    function displayProducts(productsToShow) {
+    function showProducts(items) {
       container.innerHTML = "";
-      productsToShow.forEach(product => {
-        const productBox = document.createElement("div");
-        productBox.classList.add("product");
-        productBox.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h2>${product.name}</h2>
-          <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+      items.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" />
+          <h2>${p.name}</h2>
+          <p>${p.description}</p>
+          <strong>${p.price}</strong><br>
+          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}" target="_blank">
             <button class="whatsapp-btn">Order on WhatsApp</button>
           </a>
         `;
-        container.appendChild(productBox);
+        container.appendChild(div);
       });
     }
 
-    // Initial display
-    displayProducts(products);
+    showProducts(products);
 
-    // Filter products on search input
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.toLowerCase();
-      const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm)
+    searchInput.addEventListener("input", () => {
+      const term = searchInput.value.toLowerCase();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term)
       );
-      displayProducts(filtered);
+      showProducts(filtered);
     });
   </script>
 
