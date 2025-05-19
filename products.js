@@ -8,7 +8,7 @@ const products = [
   {
     name: "HEADPHONES-P9",
     image: "https://i.ibb.co/vCJrF2NZ/headphonesp9.jpg",
-    description: "high quality, C-type charging",
+    description: "High quality, C-type charging",
     price: "₹699"
   },
   {
@@ -18,9 +18,10 @@ const products = [
     price: "₹1199"
   },
   {
-     name: "CASIO G-SHOCK",
+    name: "CASIO G-SHOCK",
     image: "https://i.ibb.co/9HTJwrjN/CASIO-G-SHOCK.jpg",
-    description: "Awesome quality,chain model.",
+    description: "Awesome quality, chain model.",
     price: "₹999"
   }
 ];
+
