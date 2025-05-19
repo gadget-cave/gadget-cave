@@ -62,18 +62,23 @@ h1 {
 }
 
 .whatsapp-btn {
-  display: inline-block;
+  display: inline-block;   /* block അല്ല, inline-block ആക്കാം */
+  max-width: 100%;         /* വളരെയധികം വീതി തടയാം */
+  box-sizing: border-box;  /* padding ഉൾപ്പെടുത്താം width-ലും */
   background-color: #25D366;
   color: white;
-  padding: 12px 25px;
+  padding: 12px 15px;      /* ചെറിയ padding കൊടുക്കാം */
   font-size: 1rem;
   border: none;
   border-radius: 7px;
   cursor: pointer;
-  text-decoration: none;  /* underline ഇല്ലാതാക്കും */
+  text-decoration: none;
   text-align: center;
-  transition: background-color 0.3s ease;
+  white-space: nowrap;     /* text ഒന്നര ലൈനായി തന്നെ കാണാൻ */
+  overflow: hidden;
+  text-overflow: ellipsis; /* text വലുതായാൽ ... കാണിക്കും */
 }
+
 
 .whatsapp-btn:hover {
   background-color: #1ebe57;
