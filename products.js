@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: "Samsung Watch with Airpods",
-    image: "https://ibb.co/nNDKhbXt/samsung watch with airpods.jpg",
+    image: "https://i.ibb.co/S4KZqPkG/samsung-watch-with-airpods.jpg",
     description: "Fitness tracker and call support.",
     price: "₹1199"
   }
