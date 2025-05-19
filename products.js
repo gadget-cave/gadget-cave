@@ -1,38 +1,20 @@
 const products = [
   {
-    name: "Mini Bluetooth Speaker",
-    price: 499,
-    image: "https://via.placeholder.com/150",
+    name: "Wireless Earbuds",
+    image: "https://via.placeholder.com/200x200.png?text=Earbuds",
+    description: "High-quality sound and battery life.",
+    price: "₹899"
   },
   {
-    name: "LED Strip Light",
-    price: 299,
-    image: "https://via.placeholder.com/150",
+    name: "Smart Watch",
+    image: "https://via.placeholder.com/200x200.png?text=Smart+Watch",
+    description: "Fitness tracker and call support.",
+    price: "₹1499"
   },
   {
     name: "samsung watch with airpods",
-    price: 1199,
-    discription:"track your fitness and notifications on the go"
-    image: "image/samsung watch with airpods.jpg",
+    image: "./images/samsung watch with airpods.jpg",
+    description: "Fitness tracker and call support.",
+    price: "₹1199"
   }
 ];
-
-const phoneNumber = "919744340057"; // Replace with your WhatsApp number
-
-const container = document.getElementById("product-list");
-
-products.forEach(product => {
-  const productEl = document.createElement("div");
-  productEl.className = "product";
-  productEl.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <h2>${product.name}</h2>
-    <p>Price: ₹${product.price}</p>
-    <a class="whatsapp-btn" target="_blank"
-      href="https://wa.me/${phoneNumber}?text=I want to order: ${encodeURIComponent(product.name)}">
-      Order on WhatsApp
-    </a>
-  `;
-  container.appendChild(productEl);
-});
-
