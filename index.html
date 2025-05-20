@@ -9,12 +9,12 @@
 <body>
 
   <header>
-    <div class="header-top">
+    <div class="header-row">
       <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Logo" class="logo" />
-      <h1 class="site-name">Gadget Cave</h1>
+      <h1 class="site-title">Gadget Cave</h1>
     </div>
-    <div class="search-bar-container">
-      <input type="text" id="search-input" placeholder="Search products..." />
+    <div class="search-wrapper">
+      <input type="text" id="search" placeholder="Search products..." />
     </div>
   </header>
 
@@ -23,42 +23,42 @@
   </main>
 
   <footer>
-    <div class="footer-text">managed by hisham k.p</div>
+    <p>managed by hisham k.p</p>
   </footer>
 
   <script src="products.js"></script>
   <script>
-    const container = document.getElementById("product-list");
-    const searchInput = document.getElementById("search-input");
+    const productList = document.getElementById("product-list");
+    const searchInput = document.getElementById("search");
 
-    function displayProducts(filter = "") {
-      container.innerHTML = "";
-      const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(filter.toLowerCase())
+    function renderProducts(filter = "") {
+      productList.innerHTML = "";
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(filter.toLowerCase())
       );
 
-      filteredProducts.forEach(product => {
-        const productBox = document.createElement("div");
-        productBox.classList.add("product");
-        productBox.innerHTML = `
+      filtered.forEach(product => {
+        const box = document.createElement("div");
+        box.className = "product-box";
+        box.innerHTML = `
           <img src="${product.image}" alt="${product.name}" />
-          <h2>${product.name}</h2>
-          <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
+          <div class="product-info">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <strong>${product.price}</strong><br/>
+            <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+              <button class="whatsapp-btn">Order on WhatsApp</button>
+            </a>
+          </div>
         `;
-        container.appendChild(productBox);
+        productList.appendChild(box);
       });
     }
 
-    // Initial display
-    displayProducts();
+    renderProducts();
 
-    // Search input event
-    searchInput.addEventListener("input", (e) => {
-      displayProducts(e.target.value);
+    searchInput.addEventListener("input", e => {
+      renderProducts(e.target.value);
     });
   </script>
 
