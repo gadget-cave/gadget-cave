@@ -9,49 +9,40 @@
 <body>
 
   <header>
-    <div class="header-row">
-      <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
-      <h1>Gadget Cave</h1>
+    <img src="gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
+    <h1>Gadget Cave</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." />
     </div>
-    <input type="text" id="productSearch" placeholder="Search products..." />
   </header>
 
   <div id="product-list"></div>
 
+  <footer>
+    Managed by Hisham Kannur
+  </footer>
+
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
-    const searchInput = document.getElementById("productSearch");
 
-    function showProducts(items) {
-      container.innerHTML = "";
-      items.forEach(p => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `
-          <img src="${p.image}" alt="${p.name}" />
-          <h2>${p.name}</h2>
-          <p>${p.description}</p>
-          <strong>${p.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(p.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
-        `;
-        container.appendChild(div);
-      });
-    }
+    products.forEach(product => {
+      const productBox = document.createElement("div");
+      productBox.classList.add("product");
 
-    showProducts(products);
+      productBox.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h2>${product.name}</h2>
+        <p>${product.description}</p>
+        <strong>${product.price}</strong><br>
+        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+          <button class="whatsapp-btn">Order on WhatsApp</button>
+        </a>
+      `;
 
-    searchInput.addEventListener("input", () => {
-      const term = searchInput.value.toLowerCase();
-      const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term)
-      );
-      showProducts(filtered);
+      container.appendChild(productBox);
     });
   </script>
 
 </body>
 </html>
-
