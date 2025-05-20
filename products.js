@@ -40,6 +40,24 @@ const products = [
     image: "https://i.ibb.co/gZYPxgYS/MZ-bluetooth-speaker.jpg",
     description: "High-quality sound and trending model.",
     price: "₹699"
+  },
+  {
+    name: "HTC-trimmer",
+    image: "https://i.ibb.co/dwydCFJZ/HTC-trimmer.jpg",
+    description: "Awesome quality,latest arrivals.",
+    price: "₹649"
+  },
+   {
+    name: "Magnet locking watch",
+    image: "https://i.ibb.co/CKMPZjDG/Magnet-locking-watch.jpg",
+    description: "best quality, different colors available .",
+    price: "₹749"
+  },
+   {
+    name: "MARSHALL headset",
+    image: "https://i.ibb.co/9Dxz1Xq/MARSHALL-headset.jpg",
+    description: "High-quality sound and latest arrivals.",
+    price: "₹949"
   }
 ];
 
