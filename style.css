@@ -1,121 +1,125 @@
-/* Reset and basics */
+/* Basic Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: #fff;
-  color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: #fff;
+  color: #222;
 }
 
-/* Header */
+/* Header styling */
 header {
-  padding: 10px 15px;
-  background-color: #f8f8f8;
+  padding: 15px 20px;
+  background-color: #f7f7f7;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
-.header-top {
+.header-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 15px;
+  gap: 20px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .logo {
-  height: 50px; /* Medium size logo */
+  height: 70px;
   width: auto;
+  flex-shrink: 0;
 }
 
-.site-name {
-  font-size: 1.8rem;
-  font-weight: bold;
-  flex-grow: 1;
-  text-align: left;
-  color: #222;
+.site-title {
+  font-size: 2.4rem;
+  font-weight: 700;
   white-space: nowrap;
+  flex-grow: 1;
+  color: #111;
 }
 
-/* Search bar container */
-.search-bar-container {
-  margin-top: 10px;
+/* Search bar */
+.search-wrapper {
+  margin-top: 12px;
 }
 
-#search-input {
+#search {
   width: 100%;
-  padding: 10px 15px;
-  font-size: 1.1rem;
+  padding: 12px 16px;
+  font-size: 1.2rem;
   border: 2px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: border-color 0.3s ease;
 }
 
-#search-input:focus {
+#search:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #4caf50;
 }
 
-/* Main content - product list */
+/* Main and products */
 main {
   flex-grow: 1;
-  padding: 15px;
+  padding: 20px;
 }
 
 #product-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-/* Product box */
-.product {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
+.product-box {
   display: flex;
-  align-items: center;
   gap: 15px;
-  background: #fafafa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fafafa;
+  align-items: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.product img {
-  width: 120px;
+.product-box img {
+  width: 140px;
   height: auto;
-  border-radius: 6px;
+  border-radius: 8px;
   flex-shrink: 0;
 }
 
-.product h2 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-}
-
-.product p {
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: #555;
+.product-info {
   flex-grow: 1;
 }
 
-.product strong {
+.product-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.product-info p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.product-info strong {
+  font-weight: 700;
   color: #111;
-  font-weight: 600;
 }
 
 .whatsapp-btn {
   background-color: #25d366;
   border: none;
   color: white;
-  padding: 8px 14px;
-  font-size: 1rem;
-  border-radius: 5px;
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -127,49 +131,45 @@ main {
 /* Footer */
 footer {
   background-color: #000;
-  padding: 8px 0;
-  text-align: center;
-}
-
-.footer-text {
   color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-/* Responsive for phone screens */
+/* Responsive (mobile) */
 @media (max-width: 600px) {
-  .header-top {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .logo {
-    height: 40px;
-  }
-
-  .site-name {
-    font-size: 1.4rem;
-    flex-basis: 100%;
-    text-align: left;
-  }
-
-  #product-list {
+  .header-row {
     gap: 12px;
   }
 
-  .product {
+  .logo {
+    height: 50px;
+  }
+
+  .site-title {
+    font-size: 1.6rem;
+  }
+
+  .product-box {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .product img {
+  .product-box img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
-  .product h2 {
-    margin-top: 10px;
+  .product-info h2 {
+    margin-top: 12px;
+  }
+
+  .whatsapp-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.2rem;
   }
 }
