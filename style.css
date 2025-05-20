@@ -1,4 +1,3 @@
-/* Reset some defaults */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -30,24 +29,22 @@ header {
   align-items: center;
   gap: 15px;
   flex: 1 1 auto;
-  min-width: 200px;
 }
 
 .logo {
-  height: 48px;  /* medium size */
+  height: 48px;
   width: auto;
-  display: block;
 }
 
 .site-title {
   font-size: 1.6rem;
   font-weight: bold;
-  white-space: nowrap;
   color: #111;
+  white-space: nowrap;
 }
 
 .header-right {
-  flex: 2 1 300px;
+  flex: 1 1 auto;
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
@@ -62,13 +59,13 @@ header {
   border-radius: 4px;
 }
 
-/* Main content */
+/* Main */
 main {
   flex-grow: 1;
   padding: 20px;
 }
 
-/* Product list */
+/* Products */
 #product-list {
   display: flex;
   flex-wrap: wrap;
@@ -76,12 +73,11 @@ main {
   justify-content: center;
 }
 
-/* Product card */
 .product {
   background: white;
   border: 1px solid #ddd;
   border-radius: 6px;
-  width: 220px; /* smaller width */
+  width: 220px;
   padding: 15px;
   box-shadow: 0 0 6px rgba(0,0,0,0.05);
   display: flex;
@@ -96,7 +92,7 @@ main {
 
 .product img {
   max-width: 100%;
-  height: 130px; /* smaller height */
+  height: 130px;
   object-fit: contain;
   margin-bottom: 12px;
 }
@@ -149,30 +145,24 @@ footer {
 }
 
 /* Responsive */
-
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .header-left {
-    width: 100%;
-    margin-bottom: 8px;
+    justify-content: center;
+    margin-bottom: 10px;
   }
 
   .header-right {
-    width: 100%;
+    justify-content: center;
     margin-top: 0;
-    justify-content: flex-start;
   }
 
   #search-bar {
     max-width: 100%;
-  }
-
-  #product-list {
-    justify-content: center;
   }
 
   .product {
@@ -198,3 +188,4 @@ footer {
     font-size: 0.9rem;
   }
 }
+
