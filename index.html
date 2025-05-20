@@ -2,146 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-    }
-
-    header {
-      background-color: #ffffff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .logo-name-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      height: 60px;
-      margin-right: 15px;
-    }
-
-    .site-title {
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .search-container {
-      flex-grow: 1;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    .search-container input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    #product-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .product {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      width: 220px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .product img {
-      width: 100%;
-      height: auto;
-      max-height: 160px;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-
-    .whatsapp-btn {
-      background-color: #25d366;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 30px;
-    }
-
-    @media screen and (min-width: 600px) {
-      .search-container {
-        margin-top: 0;
-        max-width: 500px;
-      }
-    }
-  </style>
 </head>
 <body>
+
   <header>
-    <div class="logo-name-container">
-      <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Gadget Cave Logo" class="logo" />
-      <span class="site-title">Gadget Cave</span>
+    <div class="top-bar">
+      <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
+      <h1>Gadget Cave</h1>
     </div>
-    <div class="search-container">
-      <input type="text" placeholder="Search products...">
-    </div>
+    <input type="text" id="search-bar" placeholder="Search products..." />
   </header>
 
   <div id="product-list"></div>
 
   <footer>
-    Managed by Muhammed Hisham K.P - Kannur
+    <p>Managed by Muhammed Hisham K.P - Kannur</p>
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
+    const searchBar = document.getElementById("search-bar");
 
-    products.forEach(product => {
-      const productBox = document.createElement("div");
-      productBox.classList.add("product");
+    function displayProducts(filteredProducts) {
+      container.innerHTML = "";
+      filteredProducts.forEach(product => {
+        const productBox = document.createElement("div");
+        productBox.classList.add("product");
 
-      productBox.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
-        <h2>${product.name}</h2>
-        <p>${product.description}</p>
-        <strong>${product.price}</strong><br>
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-          <button class="whatsapp-btn">Order on WhatsApp</button>
-        </a>
-      `;
+        productBox.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <strong>${product.price}</strong><br>
+          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+            <button class="whatsapp-btn">Order on WhatsApp</button>
+          </a>
+        `;
 
-      container.appendChild(productBox);
+        container.appendChild(productBox);
+      });
+    }
+
+    searchBar.addEventListener("input", () => {
+      const query = searchBar.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      displayProducts(filtered);
     });
+
+    displayProducts(products);
   </script>
+
 </body>
 </html>
+
