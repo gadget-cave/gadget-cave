@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
+      padding-bottom: 60px;
     }
 
     header {
@@ -17,90 +23,116 @@
       padding: 10px;
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
       justify-content: space-between;
-      border-bottom: 1px solid #ccc;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
     }
 
     .logo-container img {
-      width: 50px;
-      height: auto;
+      height: 50px;
+      margin-right: 10px;
     }
 
-    .logo-text {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #333;
+    .logo-container h1 {
+      font-size: 1.5rem;
+      white-space: nowrap;
     }
 
     .search-bar {
-      flex: 1 1 100%;
+      flex-basis: 100%;
       margin-top: 10px;
     }
 
     .search-bar input {
       width: 100%;
       padding: 10px;
-      font-size: 16px;
+      font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
 
     #product-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      padding: 20px;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 15px;
     }
 
     .product {
-      background-color: #fff;
+      background: #fff;
       padding: 10px;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
       text-align: center;
     }
 
     .product img {
       max-width: 100%;
       height: auto;
-      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .product h2 {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .product p {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .product strong {
+      color: green;
+      font-size: 1rem;
     }
 
     .whatsapp-btn {
-      margin-top: 10px;
-      padding: 10px;
       background-color: #25D366;
       color: white;
       border: none;
+      padding: 10px;
       border-radius: 5px;
-      font-weight: bold;
+      margin-top: 5px;
       cursor: pointer;
     }
 
     footer {
-      background-color: black;
+      background-color: #000;
       color: white;
       text-align: center;
       padding: 10px;
-      font-size: 0.9em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media(min-width: 600px) {
+      #product-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(min-width: 900px) {
+      #product-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo-container">
-      <img src="gadget%20cave.png" alt="Gadget Cave Logo">
-      <span class="logo-text">Gadget Cave</span>
+      <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo">
+      <h1>Gadget Cave</h1>
     </div>
     <div class="search-bar">
-      <input type="text" placeholder="Search for products...">
+      <input type="text" placeholder="Search for gadgets..." />
     </div>
   </header>
 
@@ -113,9 +145,11 @@
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
+
     products.forEach(product => {
       const productBox = document.createElement("div");
       productBox.classList.add("product");
+
       productBox.innerHTML = `
         <img src="${product.image}" alt="${product.name}" />
         <h2>${product.name}</h2>
@@ -125,9 +159,9 @@
           <button class="whatsapp-btn">Order on WhatsApp</button>
         </a>
       `;
+
       container.appendChild(productBox);
     });
   </script>
 </body>
 </html>
-
