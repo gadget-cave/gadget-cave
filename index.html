@@ -2,163 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f4f4f4;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background-color: #ffffff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      flex-wrap: wrap;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex: 1;
-    }
-
-    .logo-container img {
-      height: 50px;
-    }
-
-    .logo-container h1 {
-      font-size: 2rem;
-      color: #333;
-    }
-
-    .search-bar {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    .search-bar input {
-      width: 90%;
-      max-width: 600px;
-      padding: 10px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    #product-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 20px 10px;
-    }
-
-    .product {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      width: 100%;
-      max-width: 260px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .product h2 {
-      font-size: 1.1rem;
-      margin: 10px 0 5px;
-    }
-
-    .product p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .product strong {
-      display: block;
-      margin: 10px 0;
-      font-size: 1rem;
-      color: #000;
-    }
-
-    .whatsapp-btn {
-      background-color: #25D366;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    .footer {
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 0.9rem;
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
 
   <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="Gadget Cave Logo">
-      <h1>Gadget Cave</h1>
+    <div class="header-top">
+      <img src="logo.png" alt="Gadget Cave Logo" class="logo" />
+      <h1 class="site-title">Gadget Cave</h1>
     </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search for gadgets...">
-    </div>
+    <input type="text" id="search-bar" placeholder="Search for gadgets...">
   </header>
 
-  <div id="product-list"></div>
+  <main>
+    <div id="product-list"></div>
+  </main>
 
-  <footer class="footer">
-    managed by  Hisham k p - Kannur
+  <footer>
+    <p>Managed by Muhammed Hisham K.P - Kannur</p>
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
+    const searchBar = document.getElementById("search-bar");
 
-    products.forEach(product => {
-      const productBox = document.createElement("div");
-      productBox.classList.add("product");
+    function renderProducts(filter = "") {
+      container.innerHTML = "";
+      products
+        .filter(product => product.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(product => {
+          const productBox = document.createElement("div");
+          productBox.classList.add("product");
 
-      productBox.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
-        <h2>${product.name}</h2>
-        <p>${product.description}</p>
-        <strong>${product.price}</strong><br>
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-          <button class="whatsapp-btn">Order on WhatsApp</button>
-        </a>
-      `;
+          productBox.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <strong>${product.price}</strong><br>
+            <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+              <button class="whatsapp-btn">Order on WhatsApp</button>
+            </a>
+          `;
 
-      container.appendChild(productBox);
-    });
+          container.appendChild(productBox);
+        });
+    }
+
+    searchBar.addEventListener("input", () => renderProducts(searchBar.value));
+
+    renderProducts();
   </script>
 </body>
 </html>
