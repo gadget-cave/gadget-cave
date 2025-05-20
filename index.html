@@ -9,27 +9,25 @@
 <body>
 
   <header>
-    <img src="gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
-    <h1>Gadget Cave</h1>
-    <div class="search-bar">
-      <input type="text" placeholder="Search products..." />
+    <div class="logo-title">
+      <img src="https://gadget-cave.github.io/gadget-cave/gadged%20cave.png" alt="Gadget Cave Logo" class="logo" />
+      <h1>Gadget Cave</h1>
     </div>
+    <input type="text" class="search-bar" placeholder="Search for gadgets...">
   </header>
 
   <div id="product-list"></div>
 
   <footer>
-    Managed by Hisham Kannur
+    Muhammed Hisham K.P - Kannur
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
-
     products.forEach(product => {
       const productBox = document.createElement("div");
       productBox.classList.add("product");
-
       productBox.innerHTML = `
         <img src="${product.image}" alt="${product.name}" />
         <h2>${product.name}</h2>
@@ -39,7 +37,6 @@
           <button class="whatsapp-btn">Order on WhatsApp</button>
         </a>
       `;
-
       container.appendChild(productBox);
     });
   </script>
