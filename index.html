@@ -4,147 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gadget Cave</title>
-
-  <style>
-    /* Reset & base */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      background-color: white;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ccc;
-    }
-    .logo {
-      height: 50px; /* medium size logo */
-      margin-right: 15px;
-    }
-    .site-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #333;
-      flex-grow: 1;
-    }
-    .search-bar {
-      width: 100%;
-      max-width: 500px;
-      padding: 10px;
-      font-size: 1rem;
-      margin: 10px auto 20px auto;
-      display: block;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    #product-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 0 10px 30px 10px;
-    }
-    .product {
-      background: white;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 90%;
-      max-width: 280px;
-      box-sizing: border-box;
-      text-align: center;
-      padding: 10px;
-    }
-    .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-    }
-    .product h2 {
-      font-size: 1.2rem;
-      margin: 10px 0 5px 0;
-    }
-    .product p {
-      font-size: 0.9rem;
-      color: #666;
-      margin: 0 0 5px 0;
-    }
-    .product strong {
-      font-size: 1.1rem;
-      color: #000;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .whatsapp-btn {
-      background-color: #25D366;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    footer {
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 0.9rem;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Responsive */
-    @media (min-width: 600px) {
-      .product {
-        width: 45%;
-      }
-    }
-    @media (min-width: 900px) {
-      .product {
-        width: 30%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <img src="https://i.ibb.co/2qMzmHj/logo.png" alt="Gadget Cave Logo" class="logo" />
-    <div class="site-title">Gadget Cave</div>
+    <div class="header-left">
+      <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Gadget Cave Logo" class="logo" />
+      <div class="site-title">Gadget Cave</div>
+    </div>
+    <div class="header-right">
+      <input type="text" id="search-bar" placeholder="Search products..." />
+    </div>
   </header>
 
-  <input type="text" class="search-bar" placeholder="Search products..." />
-
-  <div id="product-list"></div>
+  <main>
+    <div id="product-list"></div>
+  </main>
 
   <footer>
-    Managed by Muhammed Hisham K.P - Kannur
+    Managed by Hisham K.P - Kannur
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
-    products.forEach(product => {
-      const productBox = document.createElement("div");
-      productBox.classList.add("product");
-      productBox.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
-        <h2>${product.name}</h2>
-        <p>${product.description}</p>
-        <strong>${product.price}</strong>
-        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-          <button class="whatsapp-btn">Order on WhatsApp</button>
-        </a>
-      `;
-      container.appendChild(productBox);
+    const searchBar = document.getElementById("search-bar");
+
+    function displayProducts(filterText = "") {
+      container.innerHTML = "";
+      const filteredProducts = products.filter(p =>
+        p.name.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      filteredProducts.forEach(product => {
+        const productBox = document.createElement("div");
+        productBox.classList.add("product");
+
+        productBox.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <strong>${product.price}</strong><br>
+          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+            <button class="whatsapp-btn">Order on WhatsApp</button>
+          </a>
+        `;
+
+        container.appendChild(productBox);
+      });
+    }
+
+    searchBar.addEventListener("input", (e) => {
+      displayProducts(e.target.value);
     });
+
+    // Initial display all
+    displayProducts();
   </script>
 
 </body>
 </html>
-
