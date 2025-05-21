@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -22,10 +23,25 @@
     <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
   </footer>
 
+  <!-- Popup markup -->
+  <div id="popup" class="popup-overlay">
+    <div class="popup-content">
+      <button id="popup-close" class="popup-close">&times;</button>
+      <h2 id="popup-title"></h2>
+      <div id="popup-images"></div>
+      <p id="popup-description"></p>
+    </div>
+  </div>
+
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
     const searchBar = document.getElementById("search-bar");
+    const popup = document.getElementById("popup");
+    const popupClose = document.getElementById("popup-close");
+    const popupTitle = document.getElementById("popup-title");
+    const popupImages = document.getElementById("popup-images");
+    const popupDescription = document.getElementById("popup-description");
 
     function displayProducts(filteredProducts) {
       container.innerHTML = "";
@@ -43,9 +59,45 @@
           </a>
         `;
 
+        // Open popup on product click, except if clicking WhatsApp button/link
+        productBox.addEventListener("click", (e) => {
+          if(e.target.closest("a")) return;
+
+          popupTitle.textContent = product.name;
+
+          popupImages.innerHTML = "";
+          const allImages = [product.image, ...(product.extraImages || [])];
+          allImages.forEach(imgUrl => {
+            const imgEl = document.createElement("img");
+            imgEl.src = imgUrl;
+            popupImages.appendChild(imgEl);
+          });
+
+          let desc = product.description || "";
+          if(product.longDescription && product.longDescription !== product.description){
+            desc += "<br><br>" + product.longDescription;
+          }
+          popupDescription.innerHTML = desc;
+
+          popup.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        });
+
         container.appendChild(productBox);
       });
     }
+
+    popupClose.addEventListener("click", () => {
+      popup.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+
+    popup.addEventListener("click", (e) => {
+      if(e.target === popup) {
+        popup.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    });
 
     searchBar.addEventListener("input", () => {
       const query = searchBar.value.toLowerCase();
