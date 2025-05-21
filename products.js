@@ -69,7 +69,10 @@ const products = [
     description: "best quality, different colors available .",
     price: "₹749",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/QvL7gvLd/magnet-locking-watch-brown.jpg",
+      "https://i.ibb.co/9Hb8fRMw/magnet-locking-watch-green.jpg"
+    ]
   },
    {
     name: "MARSHALL headset",
@@ -85,7 +88,10 @@ const products = [
     description: "500 mah battery,wireless earpods, call time upto 5hr",
     price: "₹749",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/CSrCsWT/BOAT-airbuds-blue.jpg",
+      "https://i.ibb.co/RpG2JZZR/BOAT-airbuds-mix.jpg"
+    ]
   },
    {
     name: "best ever combo",
@@ -93,7 +99,9 @@ const products = [
     description: "Apple watch + P9 headset + airpods 2 + Rendom bag",
     price: "₹1499",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/8Ls04V5q/apple-watch-combo-black.jpg"
+    ]
   },
    {
     name: "WATCH- LG GOLD",
@@ -101,7 +109,9 @@ const products = [
     description: "Awesome quality, latest arrivals",
     price: "₹549",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/sdkX47Kz/LG-GOLD-green.jpg"
+    ]
   },
    {
     name: "BOAT Airdopes 600",
@@ -109,7 +119,10 @@ const products = [
     description: "Wireless earphone,500 mah battery,call time upto 5hr ",
     price: "₹749",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/5xT1pQ4R/BOAT-airdopes-600-black.jpg",
+      "https://i.ibb.co/vxJsdnfB/BOAT-airdopes-600-blue.jpg"
+    ]
   },
    {
     name: "Samsung GALAXY BUDS 2 PRO",
@@ -126,6 +139,16 @@ const products = [
     name: "Ultra smart watch special edition",
     image: "https://i.ibb.co/xq4Tr7FS/Ultra-smart-watch-special-edition.jpg",
     description: "5+menu style,fitpro app,wireless charging,etc..",
+    price: "₹749",
+    longDescription:"",
+    extraImages:[
+      "https://i.ibb.co/qLk2hhLv/ultra.jpg"
+    ]
+  },
+   {
+    name: "MASSAGE GUN",
+    image: "https://i.ibb.co/fYbbQTbc/MASSAGE-GUN.jpg",
+    description: "Massage Gun | Strike Handheld Percussion Massage Gun with Interchangeable Massage Heads",
     price: "₹749",
     longDescription:"",
     extraImages:[]
