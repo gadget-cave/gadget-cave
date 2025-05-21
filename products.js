@@ -72,7 +72,7 @@ const products = [
     price: "₹1499"
   },
    {
-    name: "WATCH- LG GOLG",
+    name: "WATCH- LG GOLD",
     image: "https://i.ibb.co/KjxM14sD/LG-GOLD-watch.jpg",
     description: "Awesome quality, latest arrivals",
     price: "₹549"
