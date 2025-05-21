@@ -86,22 +86,19 @@ const products = [
    {
     name: "Samsung GALAXY BUDS 2 PRO",
     image: "https://i.ibb.co/j9thw23H/Samsung-GALAXY-BUDS-2-PRO.jpg",
-    description: "Bluetooth v5.0,touch operation,-Black,Purple,White colors available,type-C charging",
-    price: "₹849"
+    description: "touch operation,type-C charging",
+    price: "₹849",
+    longDescription:"Battery Capacity 700mAh,Ceramic Finish premium Earbuds Design,Next Generation PixArt Chipset For Lossless Connectivity"
+    extraImages:[
+     "https://i.ibb.co/ksq6jSHQ/galaxy-buds-white.jpg"
+     "https://i.ibb.co/Z63zTgRN/galaxy-buds-black.jpg"
+    ]
   },
    {
     name: "Ultra smart watch special edition",
     image: "https://i.ibb.co/xq4Tr7FS/Ultra-smart-watch-special-edition.jpg",
     description: "5+menu style,fitpro app,wireless charging,etc..",
     price: "₹749"
-  },
-   {
-    name: "Samsung Watch with Airpods",
-    image: "https://i.ibb.co/S4KZqPkG/samsung-watch-with-airpods.jpg",
-    description: "Fitness tracker and call support.",
-    price: "₹1199",
-    longDescription: "Track your fitness and receive calls on the go with this smart combo.",
-    extraImages: []
-  },
+  }
 ];
 
