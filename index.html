@@ -6,78 +6,9 @@
   <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-      position: relative;
-      text-align: center;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .modal-img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    .thumbnail-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .thumbnail-row img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 600px) {
-      .modal-content {
-        margin: 20% auto;
-        width: 95%;
-        padding: 15px;
-      }
-
-      .modal-img {
-        max-height: 200px;
-      }
-
-      .thumbnail-row img {
-        width: 50px;
-        height: 50px;
-      }
-    }
-  </style>
 </head>
 <body>
+
   <header>
     <div class="top-bar">
       <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
@@ -88,31 +19,69 @@
 
   <div id="product-list"></div>
 
-  <!-- Modal for Product Details -->
-  <div id="productModal" class="modal">
+  <!-- Modal for product detail -->
+  <div id="product-modal" class="modal">
     <div class="modal-content">
       <span class="close-btn">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <img id="modalImage" class="modal-img" src="" alt="Product Image" />
-      <p id="modalDescription"></p>
-      <div id="extraImages" class="thumbnail-row"></div>
+      <h2 id="modal-title"></h2>
+      <img id="modal-image" src="" alt="" />
+      <p id="modal-description"></p>
+      <div id="modal-extra-images"></div>
+      <strong id="modal-price"></strong><br><br>
+      <a id="modal-whatsapp" target="_blank">
+        <button class="whatsapp-btn">Order on WhatsApp</button>
+      </a>
     </div>
   </div>
 
   <footer>
-    <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
+    <p> Gadget Cave :- 🚚 All Kerala Delivery Available 🚚 </p>
+    <p>Managed by Hisham Kannur</p>
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
     const searchBar = document.getElementById("search-bar");
-    const modal = document.getElementById("productModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalImage = document.getElementById("modalImage");
-    const modalDescription = document.getElementById("modalDescription");
-    const extraImages = document.getElementById("extraImages");
-    const closeModalBtn = document.querySelector(".close-btn");
+
+    const modal = document.getElementById("product-modal");
+    const closeBtn = document.querySelector(".close-btn");
+    const modalTitle = document.getElementById("modal-title");
+    const modalImage = document.getElementById("modal-image");
+    const modalDesc = document.getElementById("modal-description");
+    const modalPrice = document.getElementById("modal-price");
+    const modalWhatsapp = document.getElementById("modal-whatsapp");
+    const modalExtraImages = document.getElementById("modal-extra-images");
+
+    function showModal(product) {
+      modalTitle.textContent = product.name;
+      modalImage.src = product.image;
+      modalDesc.textContent = product.description;
+      modalPrice.textContent = product.price;
+      modalWhatsapp.href = `https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}`;
+
+      modalExtraImages.innerHTML = '';
+      if (product.extraImages && product.extraImages.length) {
+        product.extraImages.forEach(img => {
+          const imgEl = document.createElement('img');
+          imgEl.src = img;
+          imgEl.classList.add('extra-image');
+          modalExtraImages.appendChild(imgEl);
+        });
+      }
+
+      modal.style.display = "block";
+    }
+
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = event => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
 
     function displayProducts(filteredProducts) {
       container.innerHTML = "";
@@ -124,30 +93,10 @@
           <img src="${product.image}" alt="${product.name}" />
           <h2>${product.name}</h2>
           <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
+          <strong>${product.price}</strong>
         `;
 
-        productBox.addEventListener("click", () => {
-          modalTitle.textContent = product.name;
-          modalImage.src = product.image;
-          modalDescription.textContent = product.description;
-
-          extraImages.innerHTML = "";
-          if (product.extraImages) {
-            product.extraImages.forEach(img => {
-              const thumb = document.createElement("img");
-              thumb.src = img;
-              thumb.onclick = () => modalImage.src = img;
-              extraImages.appendChild(thumb);
-            });
-          }
-
-          modal.style.display = "block";
-        });
-
+        productBox.onclick = () => showModal(product);
         container.appendChild(productBox);
       });
     }
@@ -158,18 +107,9 @@
       displayProducts(filtered);
     });
 
-    closeModalBtn.onclick = () => {
-      modal.style.display = "none";
-    };
-
-    window.onclick = (event) => {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
-
     displayProducts(products);
   </script>
 </body>
 </html>
+
 
