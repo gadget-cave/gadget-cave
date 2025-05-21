@@ -87,10 +87,7 @@ const products = [
     name: "Samsung GALAXY BUDS 2 PRO",
     image: "https://i.ibb.co/j9thw23H/Samsung-GALAXY-BUDS-2-PRO.jpg",
     description: "Bluetooth v5.0,touch operation,-Black,Purple,White colors available,type-C charging",
-    price: "₹849",
-    extraimages:[
-      "https://i.ibb.co/ksq6jSHQ/galaxy-buds-white.jpg",
-      "https://i.ibb.co/svh931pt/galaxy-buds-black.jpg"
+    price: "₹849"
   },
    {
     name: "Ultra smart watch special edition",
