@@ -19,69 +19,14 @@
 
   <div id="product-list"></div>
 
-  <!-- Modal for product detail -->
-  <div id="product-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2 id="modal-title"></h2>
-      <img id="modal-image" src="" alt="" />
-      <p id="modal-description"></p>
-      <div id="modal-extra-images"></div>
-      <strong id="modal-price"></strong><br><br>
-      <a id="modal-whatsapp" target="_blank">
-        <button class="whatsapp-btn">Order on WhatsApp</button>
-      </a>
-    </div>
-  </div>
-
   <footer>
-    <p> Gadget Cave :- 🚚 All Kerala Delivery Available 🚚 </p>
-    <p>Managed by Hisham Kannur</p>
+    <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
     const searchBar = document.getElementById("search-bar");
-
-    const modal = document.getElementById("product-modal");
-    const closeBtn = document.querySelector(".close-btn");
-    const modalTitle = document.getElementById("modal-title");
-    const modalImage = document.getElementById("modal-image");
-    const modalDesc = document.getElementById("modal-description");
-    const modalPrice = document.getElementById("modal-price");
-    const modalWhatsapp = document.getElementById("modal-whatsapp");
-    const modalExtraImages = document.getElementById("modal-extra-images");
-
-    function showModal(product) {
-      modalTitle.textContent = product.name;
-      modalImage.src = product.image;
-      modalDesc.textContent = product.description;
-      modalPrice.textContent = product.price;
-      modalWhatsapp.href = `https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}`;
-
-      modalExtraImages.innerHTML = '';
-      if (product.extraImages && product.extraImages.length) {
-        product.extraImages.forEach(img => {
-          const imgEl = document.createElement('img');
-          imgEl.src = img;
-          imgEl.classList.add('extra-image');
-          modalExtraImages.appendChild(imgEl);
-        });
-      }
-
-      modal.style.display = "block";
-    }
-
-    closeBtn.onclick = () => {
-      modal.style.display = "none";
-    };
-
-    window.onclick = event => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    };
 
     function displayProducts(filteredProducts) {
       container.innerHTML = "";
@@ -93,10 +38,12 @@
           <img src="${product.image}" alt="${product.name}" />
           <h2>${product.name}</h2>
           <p>${product.description}</p>
-          <strong>${product.price}</strong>
+          <strong>${product.price}</strong><br>
+          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+            <button class="whatsapp-btn">Order on WhatsApp</button>
+          </a>
         `;
 
-        productBox.onclick = () => showModal(product);
         container.appendChild(productBox);
       });
     }
@@ -109,7 +56,6 @@
 
     displayProducts(products);
   </script>
+
 </body>
 </html>
-
-
