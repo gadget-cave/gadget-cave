@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gadget-cave.github.io/gadget-cave/sitemap.xml
