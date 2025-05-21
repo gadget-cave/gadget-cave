@@ -94,6 +94,14 @@ const products = [
     image: "https://i.ibb.co/xq4Tr7FS/Ultra-smart-watch-special-edition.jpg",
     description: "5+menu style,fitpro app,wireless charging,etc..",
     price: "₹749"
-  }
+  },
+   {
+    name: "Samsung Watch with Airpods",
+    image: "https://i.ibb.co/S4KZqPkG/samsung-watch-with-airpods.jpg",
+    description: "Fitness tracker and call support.",
+    price: "₹1199",
+    longDescription: "Track your fitness and receive calls on the go with this smart combo.",
+    extraImages: []
+  },
 ];
 
