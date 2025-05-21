@@ -6,9 +6,61 @@
   <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .thumbnail-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumbnail-row img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-
   <header>
     <div class="top-bar">
       <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
@@ -19,14 +71,32 @@
 
   <div id="product-list"></div>
 
+  <!-- Modal for Product Details -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" class="modal-img" src="" alt="Product Image" />
+      <p id="modalDescription"></p>
+      <div id="extraImages" class="thumbnail-row"></div>
+    </div>
+  </div>
+
   <footer>
     <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
+    <p>Managed by Hisham Kannur</p>
   </footer>
 
   <script src="products.js"></script>
   <script>
     const container = document.getElementById("product-list");
     const searchBar = document.getElementById("search-bar");
+    const modal = document.getElementById("productModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
+    const modalDescription = document.getElementById("modalDescription");
+    const extraImages = document.getElementById("extraImages");
+    const closeModalBtn = document.querySelector(".close-btn");
 
     function displayProducts(filteredProducts) {
       container.innerHTML = "";
@@ -44,6 +114,24 @@
           </a>
         `;
 
+        productBox.addEventListener("click", () => {
+          modalTitle.textContent = product.name;
+          modalImage.src = product.image;
+          modalDescription.textContent = product.description;
+
+          extraImages.innerHTML = "";
+          if (product.extraImages) {
+            product.extraImages.forEach(img => {
+              const thumb = document.createElement("img");
+              thumb.src = img;
+              thumb.onclick = () => modalImage.src = img;
+              extraImages.appendChild(thumb);
+            });
+          }
+
+          modal.style.display = "block";
+        });
+
         container.appendChild(productBox);
       });
     }
@@ -54,9 +142,18 @@
       displayProducts(filtered);
     });
 
+    closeModalBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
     displayProducts(products);
   </script>
-
 </body>
 </html>
 
