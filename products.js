@@ -62,7 +62,7 @@ const products = [
    {
     name: "BOAT AIRBUDS",
     image: "https://i.ibb.co/RkSWyDKh/BOAT-airbuds.jpg",
-    description: "500 mah battery,wireless earpods",
+    description: "500 mah battery,wireless earpods, call time upto 5hr",
     price: "₹749"
   },
    {
@@ -80,13 +80,13 @@ const products = [
    {
     name: "BOAT Airdopes 600",
     image: "https://i.ibb.co/JjvhcFZt/BOAT-airdopes-600.jpg",
-    description: "Wireless earphone,500 mah battery",
+    description: "Wireless earphone,500 mah battery,call time upto 5hr ",
     price: "₹749"
   },
    {
     name: "Samsung GALAXY BUDS 2 PRO",
     image: "https://i.ibb.co/j9thw23H/Samsung-GALAXY-BUDS-2-PRO.jpg",
-    description: "Bluetooth v5.0,touch operation,-Black,Purple,White colors available",
+    description: "Bluetooth v5.0,touch operation,-Black,Purple,White colors available,type-C charging",
     price: "₹849"
   }
 ];
