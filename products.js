@@ -66,7 +66,7 @@ const products = [
    {
     name: "Magnet locking watch",
     image: "https://i.ibb.co/CKMPZjDG/Magnet-locking-watch.jpg",
-    description: "best quality, different colors available .",
+    description: "click more details☝️.",
     price: "₹749",
     longDescription:"",
     extraImages:[
@@ -85,9 +85,9 @@ const products = [
    {
     name: "BOAT AIRBUDS",
     image: "https://i.ibb.co/RkSWyDKh/BOAT-airbuds.jpg",
-    description: "500 mah battery,wireless earpods, call time upto 5hr",
+    description: "click more details☝️.",
     price: "₹749",
-    longDescription:"",
+    longDescription:"500 mah battery,wireless earpods, call time upto 5hr",
     extraImages:[
       "https://i.ibb.co/CSrCsWT/BOAT-airbuds-blue.jpg",
       "https://i.ibb.co/RpG2JZZR/BOAT-airbuds-mix.jpg"
@@ -96,9 +96,9 @@ const products = [
    {
     name: "best ever combo",
     image: "https://i.ibb.co/21yghLzS/apple-watch-headset.jpg",
-    description: "Apple watch + P9 headset + airpods 2 + Rendom bag",
+    description: "click more details☝️.",
     price: "₹1499",
-    longDescription:"",
+    longDescription:"Apple watch + P9 headset + airpods 2 + Rendom bag",
     extraImages:[
       "https://i.ibb.co/8Ls04V5q/apple-watch-combo-black.jpg"
     ]
@@ -106,9 +106,9 @@ const products = [
    {
     name: "WATCH- LG GOLD",
     image: "https://i.ibb.co/KjxM14sD/LG-GOLD-watch.jpg",
-    description: "Awesome quality, latest arrivals",
+    description: "click more details☝️.",
     price: "₹549",
-    longDescription:"",
+    longDescription:"Awesome quality, latest arrivals",
     extraImages:[
       "https://i.ibb.co/sdkX47Kz/LG-GOLD-green.jpg"
     ]
@@ -116,9 +116,9 @@ const products = [
    {
     name: "BOAT Airdopes 600",
     image: "https://i.ibb.co/JjvhcFZt/BOAT-airdopes-600.jpg",
-    description: "Wireless earphone,500 mah battery,call time upto 5hr ",
+    description: "click more detils☝️. ",
     price: "₹749",
-    longDescription:"",
+    longDescription:"Wireless earphone,500 mah battery,call time upto 5hr",
     extraImages:[
       "https://i.ibb.co/5xT1pQ4R/BOAT-airdopes-600-black.jpg",
       "https://i.ibb.co/vxJsdnfB/BOAT-airdopes-600-blue.jpg"
@@ -127,9 +127,9 @@ const products = [
    {
     name: "Samsung GALAXY BUDS 2 PRO",
     image: "https://i.ibb.co/j9thw23H/Samsung-GALAXY-BUDS-2-PRO.jpg",
-    description: "touch operation,type-C charging.",
+    description: "click more details☝️.",
     price: "₹849",
-    longDescription: "Battery Capacity 700mAh,Ceramic Finish premium Earbuds Design,Next Generation PixArt Chipset For Lossless Connectivity.",
+    longDescription: "touch operation,type-c charging,Battery Capacity 700mAh,Ceramic Finish premium Earbuds Design,Next Generation PixArt Chipset For Lossless Connectivity.",
     extraImages: [
       "https://i.ibb.co/ksq6jSHQ/galaxy-buds-white.jpg",
       "https://i.ibb.co/Z63zTgRN/galaxy-buds-black.jpg"  // example extra image
@@ -138,9 +138,9 @@ const products = [
    {
     name: "Ultra smart watch special edition",
     image: "https://i.ibb.co/xq4Tr7FS/Ultra-smart-watch-special-edition.jpg",
-    description: "5+menu style,fitpro app,wireless charging,etc..",
+    description: "click more details☝️",
     price: "₹749",
-    longDescription:"",
+    longDescription:"5+menu style,fitpro app,wireless charging,etc..",
     extraImages:[
       "https://i.ibb.co/qLk2hhLv/ultra.jpg"
     ]
@@ -152,6 +152,17 @@ const products = [
     price: "₹749",
     longDescription:"",
     extraImages:[]
+  },
+   {
+     name: "premium airpods pro2",
+    image: "https://i.ibb.co/LhZRNFQf/apple-airpod-pro2-white.jpg",
+    description: "click more details☝️",
+    price: "₹799",
+    longDescription:"5-8 hours battery backup including case,Premium build material,Compatible with all devices,Both Sensors Fully Functional ,598mah battery,Premium Metal Engraving ,Extra buds ",
+    extraImages:[
+      "https://i.ibb.co/XxD8StC8/apple-airpod-pro2-black.jpg",
+      "https://i.ibb.co/Xrv0n01C/apple-airpod-pro-2-mix.jpg"
+    ]
   }
 ];
 
