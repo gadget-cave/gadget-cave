@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
     <div class="top-bar">
       <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
@@ -17,13 +15,13 @@
     <input type="text" id="search-bar" placeholder="Search products..." />
   </header>
 
-  <div id="product-list"></div>
+  <div id="category-container"></div>
 
   <footer>
-    <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
+    <p> Gadget Cave :- 🚚 All Kerala Delivery Available 🚚</p>
+    <p>Managed by Hisham Kannur</p>
   </footer>
 
-  <!-- Popup markup -->
   <div id="popup" class="popup-overlay">
     <div class="popup-content">
       <button id="popup-close" class="popup-close">&times;</button>
@@ -35,7 +33,7 @@
 
   <script src="products.js"></script>
   <script>
-    const container = document.getElementById("product-list");
+    const container = document.getElementById("category-container");
     const searchBar = document.getElementById("search-bar");
     const popup = document.getElementById("popup");
     const popupClose = document.getElementById("popup-close");
@@ -43,48 +41,57 @@
     const popupImages = document.getElementById("popup-images");
     const popupDescription = document.getElementById("popup-description");
 
-    function displayProducts(filteredProducts) {
+    function createProductBox(product) {
+      const productBox = document.createElement("div");
+      productBox.classList.add("product");
+      productBox.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h2>${product.name}</h2>
+        <p>${product.description}</p>
+        <strong>${product.price}</strong><br>
+        <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
+          <button class="whatsapp-btn">Order on WhatsApp</button>
+        </a>
+      `;
+      productBox.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        popupTitle.textContent = product.name;
+        popupImages.innerHTML = "";
+        const allImages = [product.image, ...(product.extraImages || [])];
+        allImages.forEach(imgUrl => {
+          const imgEl = document.createElement("img");
+          imgEl.src = imgUrl;
+          popupImages.appendChild(imgEl);
+        });
+        popupDescription.innerHTML = (product.description || "") +
+          (product.longDescription ? "<br><br>" + product.longDescription : "");
+        popup.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      });
+      return productBox;
+    }
+
+    function displayCategories(data) {
       container.innerHTML = "";
-      filteredProducts.forEach(product => {
-        const productBox = document.createElement("div");
-        productBox.classList.add("product");
+      for (const category in data) {
+        const section = document.createElement("section");
+        section.classList.add("category-section");
 
-        productBox.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h2>${product.name}</h2>
-          <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
-        `;
+        const heading = document.createElement("h2");
+        heading.textContent = category;
+        heading.classList.add("category-title");
+        section.appendChild(heading);
 
-        // Open popup on product click, except if clicking WhatsApp button/link
-        productBox.addEventListener("click", (e) => {
-          if(e.target.closest("a")) return;
+        const productGrid = document.createElement("div");
+        productGrid.classList.add("product-grid");
 
-          popupTitle.textContent = product.name;
-
-          popupImages.innerHTML = "";
-          const allImages = [product.image, ...(product.extraImages || [])];
-          allImages.forEach(imgUrl => {
-            const imgEl = document.createElement("img");
-            imgEl.src = imgUrl;
-            popupImages.appendChild(imgEl);
-          });
-
-          let desc = product.description || "";
-          if(product.longDescription && product.longDescription !== product.description){
-            desc += "<br><br>" + product.longDescription;
-          }
-          popupDescription.innerHTML = desc;
-
-          popup.style.display = "flex";
-          document.body.style.overflow = "hidden";
+        data[category].forEach(product => {
+          productGrid.appendChild(createProductBox(product));
         });
 
-        container.appendChild(productBox);
-      });
+        section.appendChild(productGrid);
+        container.appendChild(section);
+      }
     }
 
     popupClose.addEventListener("click", () => {
@@ -93,20 +100,29 @@
     });
 
     popup.addEventListener("click", (e) => {
-      if(e.target === popup) {
+      if (e.target === popup) {
         popup.style.display = "none";
         document.body.style.overflow = "auto";
       }
     });
 
-    searchBar.addEventListener("input", () => {
+    function filterAndDisplay() {
       const query = searchBar.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-      displayProducts(filtered);
-    });
+      const filteredData = {};
+      for (const category in products) {
+        const filteredProducts = products[category].filter(p =>
+          p.name.toLowerCase().includes(query)
+        );
+        if (filteredProducts.length > 0) {
+          filteredData[category] = filteredProducts;
+        }
+      }
+      displayCategories(filteredData);
+    }
 
-    displayProducts(products);
+    searchBar.addEventListener("input", filterAndDisplay);
+
+    displayCategories(products);
   </script>
-
 </body>
 </html>
