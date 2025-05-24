@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <header>
     <div class="top-bar">
       <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
@@ -15,13 +16,13 @@
     <input type="text" id="search-bar" placeholder="Search products..." />
   </header>
 
-  <div id="product-container"></div>
+  <main id="category-sections"></main>
 
   <footer>
-    <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚
+    Managed by Hisham Kannur
   </footer>
 
-  <!-- Popup -->
+  <!-- Popup markup -->
   <div id="popup" class="popup-overlay">
     <div class="popup-content">
       <button id="popup-close" class="popup-close">&times;</button>
@@ -32,92 +33,7 @@
   </div>
 
   <script src="products.js"></script>
-  <script>
-    const container = document.getElementById("product-container");
-    const searchBar = document.getElementById("search-bar");
-    const popup = document.getElementById("popup");
-    const popupClose = document.getElementById("popup-close");
-    const popupTitle = document.getElementById("popup-title");
-    const popupImages = document.getElementById("popup-images");
-    const popupDescription = document.getElementById("popup-description");
-
-    function createCategorySection(title, items) {
-      const section = document.createElement("section");
-      const heading = document.createElement("h2");
-      heading.textContent = title;
-      heading.className = "category-title";
-      section.appendChild(heading);
-
-      const list = document.createElement("div");
-      list.className = "product-list";
-      items.forEach(product => {
-        const box = document.createElement("div");
-        box.className = "product";
-        box.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
-        `;
-        box.addEventListener("click", (e) => {
-          if (e.target.closest("a")) return;
-          popupTitle.textContent = product.name;
-          popupImages.innerHTML = "";
-          const allImages = [product.image, ...(product.extraImages || [])];
-          allImages.forEach(img => {
-            const el = document.createElement("img");
-            el.src = img;
-            popupImages.appendChild(el);
-          });
-          let desc = product.description || "";
-          if (product.longDescription && product.longDescription !== product.description) {
-            desc += "<br><br>" + product.longDescription;
-          }
-          popupDescription.innerHTML = desc;
-          popup.style.display = "flex";
-          document.body.style.overflow = "hidden";
-        });
-        list.appendChild(box);
-      });
-      section.appendChild(list);
-      container.appendChild(section);
-    }
-
-    function displayProductsByCategory(productsByCategory) {
-      container.innerHTML = "";
-      Object.keys(productsByCategory).forEach(category => {
-        createCategorySection(category, productsByCategory[category]);
-      });
-    }
-
-    popupClose.addEventListener("click", () => {
-      popup.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
-    popup.addEventListener("click", e => {
-      if (e.target === popup) {
-        popup.style.display = "none";
-        document.body.style.overflow = "auto";
-      }
-    });
-
-    searchBar.addEventListener("input", () => {
-      const query = searchBar.value.toLowerCase();
-      const filtered = {};
-      for (const category in productsByCategory) {
-        const matching = productsByCategory[category].filter(p =>
-          p.name.toLowerCase().includes(query)
-        );
-        if (matching.length > 0) filtered[category] = matching;
-      }
-      displayProductsByCategory(filtered);
-    });
-
-    displayProductsByCategory(productsByCategory);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 
