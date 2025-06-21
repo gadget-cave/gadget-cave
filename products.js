@@ -76,11 +76,13 @@ const products = [
   },
    {
     name: "MARSHALL headset",
-    image: "https://i.ibb.co/9Dxz1Xq/MARSHALL-headset.jpg",
-    description: "High-quality sound and latest arrivals.",
+    image: "https://i.ibb.co/rRgjQkmp/marshall-headset-1-0.jpg",
+    description:"High-quality sound and latest arrivals.",
     price: "₹949",
     longDescription:"",
-    extraImages:[]
+    extraImages:[
+      "https://i.ibb.co/9Dxz1Xq/MARSHALL-headset.jpg"
+    ]
   },
    {
     name: "BOAT AIRBUDS",
@@ -162,6 +164,56 @@ const products = [
     extraImages:[
       "https://i.ibb.co/XxD8StC8/apple-airpod-pro2-black.jpg",
       "https://i.ibb.co/Xrv0n01C/apple-airpod-pro-2-mix.jpg"
+    ]
+  },
+  {
+    name: "YIXIANO,powerbank",
+    image: "https://i.ibb.co/qYxy1H2s/powerbank-1.jpg",
+    description: "click more details☝️",
+    price: "₹1399",
+    longDescription:"10,000 mAh powerbank , Awesome Quality ▪️New Arrivals ▪️Dual input port",
+    extraImages:[
+      "https://i.ibb.co/PZ42nSxb/power-bank-1-0.jpg",
+      "https://i.ibb.co/cMX6WDB/power-bank-1-1.jpg"
+    ]
+  },
+    {
+    name: "HTC TRIMMER ",
+    image: "https://i.ibb.co/jvwSjGPs/htc-trimmer-1.jpg",
+    description: "click more details☝️",
+    price: "₹699",
+    longDescription:"-PREMIUM QUALITY , LATEST ARRIVALS , TRENDING MODEL",
+    extraImages:[
+      "https://i.ibb.co/Mk9b03nh/htc-trimmer-1-0jpg.jpg"
+    ]
+  },
+    {
+    name: "NIKE 𝐖𝐀𝐓𝐂𝐇 ",
+    image: "https://i.ibb.co/9HbxGww8/nike-watch-1-0.jpg",
+    description: "click more details☝️",
+    price: "₹1599",
+    longDescription:"NEW ARRIVAL ,GOOD QUALITY ",
+    extraImages:[]
+  },
+    {
+    name: "CASIO watch ",
+    image: "https://i.ibb.co/Zprbcj0B/casio-1-0.jpg",
+    description: "click more details☝️",
+    price: "₹699",
+    longDescription:"-AWESOME QUALITY , LATEST ARRIVALS , UNISEX WATCHES , TRENDING MODEL",
+    extraImages:[
+      "https://i.ibb.co/ycVh0skx/casio-1-1.jpg"
+    ]
+  },
+   {
+    name: "JBL TUNE 510",
+    image: "https://i.ibb.co/tMvfYQpB/J-BL-tune-510-1-o.jpg",
+    description: "click more details☝️",
+    price: "₹829",
+    longDescription:"TF card support , Aux cable Support , wireless , connected with ios& android , powerful sound with 360 AUDIO , wire free",
+    extraImages:[
+      "https://i.ibb.co/twRfYk42/J-BL-tune-510-1-2.jpg",
+      "https://i.ibb.co/h1Y61XZF/J-BL-tune-510-1-1.jpg"
     ]
   }
 ];
