@@ -167,7 +167,7 @@ const products = [
     ]
   },
   {
-    name: "YIXIANO,powerbank",
+    name: "YIXIAO,powerbank",
     image: "https://i.ibb.co/qYxy1H2s/powerbank-1.jpg",
     description: "click more details☝️",
     price: "₹1399",
