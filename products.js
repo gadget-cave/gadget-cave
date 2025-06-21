@@ -215,5 +215,26 @@ const products = [
       "https://i.ibb.co/twRfYk42/J-BL-tune-510-1-2.jpg",
       "https://i.ibb.co/h1Y61XZF/J-BL-tune-510-1-1.jpg"
     ]
+  },
+   {
+    name: "TISSOT watch",
+    image: "https://i.ibb.co/XZm2C6F4/tissot-watch-1-0.jpg",
+    description: "click more details☝️.",
+    price: "649",
+    longDescription:"-AWESOME QUALITY , LATEST ARRIVALS , GENTS WATCHES , TRENDING MODEL",
+    extraImages:[
+      "https://i.ibb.co/gZMr1b76/tissot-watch-1-1jpg.jpg",
+      "https://i.ibb.co/V4hC7XB/tissot-watch-1-2.jpg"
+    ]
+  }, {
+    name: "Magnet locking watch",
+    image: "https://i.ibb.co/8gmpXQXH/delton-watch-1-0.jpg",
+    description: "click more details☝️.",
+    price: "₹749",
+    longDescription:"",
+    extraImages:[
+      "https://i.ibb.co/cpTJjYG/delton-watch-1-1.jpg",
+      "https://i.ibb.co/2HrhckZ/delton-watch-1-2.jpg"
+    ]
   }
 ];
