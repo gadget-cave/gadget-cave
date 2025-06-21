@@ -157,13 +157,13 @@ const products = [
   },
    {
      name: "premium airpods pro2",
-    image: "https://i.ibb.co/LhZRNFQf/apple-airpod-pro2-white.jpg",
+    image: "https://i.ibb.co/Xrv0n01C/apple-airpod-pro-2-mix.jpg",
     description: "click more details☝️",
     price: "₹799",
     longDescription:"5-8 hours battery backup including case,Premium build material,Compatible with all devices,Both Sensors Fully Functional ,598mah battery,Premium Metal Engraving ,Extra buds ",
     extraImages:[
       "https://i.ibb.co/XxD8StC8/apple-airpod-pro2-black.jpg",
-      "https://i.ibb.co/Xrv0n01C/apple-airpod-pro-2-mix.jpg"
+      "https://i.ibb.co/LhZRNFQf/apple-airpod-pro2-white.jpg"
     ]
   },
   {
