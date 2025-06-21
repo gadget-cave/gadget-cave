@@ -227,11 +227,11 @@ const products = [
       "https://i.ibb.co/V4hC7XB/tissot-watch-1-2.jpg"
     ]
   }, {
-    name: "Magnet locking watch",
+    name: " DELTON watch",
     image: "https://i.ibb.co/8gmpXQXH/delton-watch-1-0.jpg",
     description: "click more details☝️.",
-    price: "₹749",
-    longDescription:"",
+    price: "₹599",
+    longDescription:"AWESOME QUALITY , LATEST ARRIVALS , UNISEX WATCHES , TRENDING MODEL",
     extraImages:[
       "https://i.ibb.co/cpTJjYG/delton-watch-1-1.jpg",
       "https://i.ibb.co/2HrhckZ/delton-watch-1-2.jpg"
