@@ -6,107 +6,129 @@
   <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <a href="admin.html">
+                <img src="https://i.ibb.co/SD2HhQRW/gadged-cave-3.png" alt="Gadget Cave Logo" />
+            </a>
+            <h1>Gadget Cave</h1>
+        </div>
+        <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()" />
+    </header>
 
-  <header>
-    <div class="top-bar">
-      <img src="https://i.ibb.co/FbsdpgK3/gadged-cave-3.png" alt="Logo" class="logo" />
-      <h1>Gadget Cave</h1>
-    </div>
-    <input type="text" id="search-bar" placeholder="Search products..." />
-  </header>
+    <nav id="categories">
+        <button onclick="filterCategory('All')">All</button>
+        <button onclick="filterCategory('Earphones')">Earphones</button>
+        <button onclick="filterCategory('Watches')">Watches</button>
+        <button onclick="filterCategory('Speakers')">Speakers</button>
+        <button onclick="filterCategory('Trimmers')">Trimmers</button>
+        <button onclick="filterCategory('Headphones')">Headphones</button>
+        <button onclick="filterCategory('Smartwatches')">Smartwatches</button>
+        <button onclick="filterCategory('Combos')">Combos</button>
+        <button onclick="filterCategory('Powerbanks')">Powerbanks</button>
+        <button onclick="filterCategory('Other')">Other</button>
+    </nav>
 
-  <div id="product-list"></div>
+    <main id="product-list"></main>
 
-  <footer>
-    <p> Gadget Cave :- 🚚 All Kerala Delivery Available🚚 🚚 </p>
-  </footer>
+    <footer>
+        <p>gadget cave</p>
+    </footer>
 
-  <!-- Popup markup -->
-  <div id="popup" class="popup-overlay">
-    <div class="popup-content">
-      <button id="popup-close" class="popup-close">&times;</button>
-      <h2 id="popup-title"></h2>
-      <div id="popup-images"></div>
-      <p id="popup-description"></p>
-    </div>
-  </div>
+    <script>
+        // Your new Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBwRIwY_m15FYUrBqztQMBMyYSvSsdfJ_8",
+          authDomain: "gadget-cave-new.firebaseapp.com",
+          projectId: "gadget-cave-new",
+          storageBucket: "gadget-cave-new.firebasestorage.app",
+          messagingSenderId: "670040556331",
+          appId: "1:670040556331:web:5caf0bf8c5452e8e733b6e"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-  <script src="products.js"></script>
-  <script>
-    const container = document.getElementById("product-list");
-    const searchBar = document.getElementById("search-bar");
-    const popup = document.getElementById("popup");
-    const popupClose = document.getElementById("popup-close");
-    const popupTitle = document.getElementById("popup-title");
-    const popupImages = document.getElementById("popup-images");
-    const popupDescription = document.getElementById("popup-description");
-
-    function displayProducts(filteredProducts) {
-      container.innerHTML = "";
-      filteredProducts.forEach(product => {
-        const productBox = document.createElement("div");
-        productBox.classList.add("product");
-
-        productBox.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h2>${product.name}</h2>
-          <p>${product.description}</p>
-          <strong>${product.price}</strong><br>
-          <a href="https://wa.me/919744340057?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">
-            <button class="whatsapp-btn">Order on WhatsApp</button>
-          </a>
-        `;
-
-        // Open popup on product click, except if clicking WhatsApp button/link
-        productBox.addEventListener("click", (e) => {
-          if(e.target.closest("a")) return;
-
-          popupTitle.textContent = product.name;
-
-          popupImages.innerHTML = "";
-          const allImages = [product.image, ...(product.extraImages || [])];
-          allImages.forEach(imgUrl => {
-            const imgEl = document.createElement("img");
-            imgEl.src = imgUrl;
-            popupImages.appendChild(imgEl);
-          });
-
-          let desc = product.description || "";
-          if(product.longDescription && product.longDescription !== product.description){
-            desc += "<br><br>" + product.longDescription;
-          }
-          popupDescription.innerHTML = desc;
-
-          popup.style.display = "flex";
-          document.body.style.overflow = "hidden";
+        // Fetch all products from the database on page load
+        db.collection("products").get().then((querySnapshot) => {
+            const products = [];
+            querySnapshot.forEach((doc) => {
+                const product = doc.data();
+                product.id = doc.id;
+                products.push(product);
+            });
+            displayProducts(products);
+        }).catch(error => {
+            console.error("Error fetching documents: ", error);
         });
 
-        container.appendChild(productBox);
-      });
-    }
+        // --- All other functions ---
+        function displayProducts(productList) {
+            const container = document.getElementById("product-list");
+            container.innerHTML = "";
+            productList.forEach((product) => {
+                const productBox = document.createElement("div");
+                productBox.classList.add("product");
+                productBox.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>₹${product.price}</p>
+                    <button class="buy-button" onclick="buyNow('${product.id}')">Buy Now</button>
+                `;
+                container.appendChild(productBox);
+            });
+        }
 
-    popupClose.addEventListener("click", () => {
-      popup.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
+        function filterCategory(category) {
+            db.collection("products").get().then((querySnapshot) => {
+                const products = [];
+                querySnapshot.forEach((doc) => {
+                    products.push({ id: doc.id, ...doc.data() });
+                });
+                if (category === "All") {
+                    displayProducts(products);
+                } else {
+                    const filtered = products.filter(p => p.category === category);
+                    displayProducts(filtered);
+                }
+            }).catch(error => {
+                console.error("Error fetching documents: ", error);
+            });
+        }
 
-    popup.addEventListener("click", (e) => {
-      if(e.target === popup) {
-        popup.style.display = "none";
-        document.body.style.overflow = "auto";
-      }
-    });
+        function searchProducts() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            db.collection("products").get().then((querySnapshot) => {
+                const products = [];
+                querySnapshot.forEach((doc) => {
+                    products.push({ id: doc.id, ...doc.data() });
+                });
+                const filteredProducts = products.filter(product => {
+                    return product.name.toLowerCase().includes(searchTerm);
+                });
+                displayProducts(filteredProducts);
+            }).catch(error => {
+                console.error("Error fetching documents: ", error);
+            });
+        }
 
-    searchBar.addEventListener("input", () => {
-      const query = searchBar.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-      displayProducts(filtered);
-    });
-
-    displayProducts(products);
-  </script>
-
+        function buyNow(productId) {
+            db.collection("products").doc(productId).get().then((doc) => {
+                if (doc.exists) {
+                    const product = doc.data();
+                    const productName = encodeURIComponent(product.name);
+                    const productPrice = product.price;
+                    window.location.href = `buy.html?id=${productId}&product=${productName}&amount=${productPrice}`;
+                }
+            }).catch(error => {
+                console.error("Error fetching document: ", error);
+            });
+        }
+    </script>
 </body>
 </html>
