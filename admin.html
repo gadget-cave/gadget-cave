@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gadget Cave</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <style>
+        /* Admin page specific styles */
+        .admin-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .admin-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .admin-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .admin-container input, .admin-container textarea, .admin-container select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .admin-container button {
+            padding: 10px;
+            background-color: #101010;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #auth-container {
+            text-align: center;
+        }
+        #auth-container input {
+            padding: 10px;
+            width: 80%;
+        }
+        #add-product-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div id="auth-container">
+            <h2>Enter Secret Pass</h2>
+            <input type="password" id="secret-pass" placeholder="Enter password">
+            <button onclick="authenticate()">Login</button>
+            <p id="error-message" style="color: red;"></p>
+        </div>
+
+        <div id="add-product-form">
+            <h2>Add New Product</h2>
+            <form id="product-form">
+                <input type="text" id="p-name" placeholder="Product Name" required>
+                <input type="text" id="p-image" placeholder="Main Image URL" required>
+                <input type="text" id="p-price" placeholder="Price (Numbers only, e.g., 599)" required>
+                <textarea id="p-description" placeholder="Description"></textarea>
+                <select id="p-category" required>
+                    <option value="">Select Category</option>
+                    <option value="Earphones">Earphones</option>
+                    <option value="Watches">Watches</option>
+                    <option value="Speakers">Speakers</option>
+                    <option value="Trimmers">Trimmers</option>
+                    <option value="Headphones">Headphones</option>
+                    <option value="Smartwatches">Smartwatches</option>
+                    <option value="Combos">Combos</option>
+                    <option value="Powerbanks">Powerbanks</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" id="p-extra-images" placeholder="Extra Image URLs (comma separated)">
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Your new Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBwRIwY_m15FYUrBqztQMBMyYSvSsdfJ_8",
+          authDomain: "gadget-cave-new.firebaseapp.com",
+          projectId: "gadget-cave-new",
+          storageBucket: "gadget-cave-new.firebasestorage.app",
+          messagingSenderId: "670040556331",
+          appId: "1:670040556331:web:5caf0bf8c5452e8e733b6e"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const SECRET_PASS = "Hixzam@313";
+        const db = firebase.firestore();
+
+        function authenticate() {
+            const passInput = document.getElementById("secret-pass").value;
+            const authContainer = document.getElementById("auth-container");
+            const productFormContainer = document.getElementById("add-product-form");
+            const errorMessage = document.getElementById("error-message");
+
+            if (passInput === SECRET_PASS) {
+                authContainer.style.display = "none";
+                productFormContainer.style.display = "block";
+                errorMessage.textContent = "";
+            } else {
+                errorMessage.textContent = "Incorrect password. Please try again.";
+            }
+        }
+
+        document.getElementById("product-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const newProduct = {
+                name: document.getElementById("p-name").value,
+                image: document.getElementById("p-image").value,
+                price: parseInt(document.getElementById("p-price").value),
+                description: document.getElementById("p-description").value,
+                category: document.getElementById("p-category").value,
+                extraImages: document.getElementById("p-extra-images").value.split(',').map(url => url.trim()).filter(url => url),
+            };
+
+            db.collection("products").add(newProduct)
+            .then((docRef) => {
+                alert("New product added successfully!");
+                console.log("Document written with ID: ", docRef.id);
+                document.getElementById("product-form").reset();
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                alert("Error adding product. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>
