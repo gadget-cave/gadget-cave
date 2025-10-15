@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Buy Now - Gadget Cave</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="buy-container">
+        <h2>Enter Delivery Details</h2>
+        <form id="deliveryForm">
+            <input type="text" name="name" placeholder="Full Name" required />
+            <textarea name="address" placeholder="Full Address" required></textarea>
+            <input type="text" name="house" placeholder="House No. / Shop No. (Optional)" />
+            <input type="text" name="landmark" placeholder="Landmark (Optional)" />
+            <input type="text" name="city" placeholder="City" required />
+            <input type="text" name="district" placeholder="District" required />
+            <input type="text" name="state" placeholder="State" required />
+            <input type="text" name="pincode" placeholder="Pincode" required />
+            <input type="text" name="phone" placeholder="Phone Number" required />
+            <button type="submit">Proceed to Payment</button>
+        </form>
+
+        <div id="paymentInfo" style="display:none;">
+            <h3>Send Payment to:</h3>
+            <p>
+                <a id="upiLink" href="#">
+                    UPI ID: <strong>hixzam313@okaxis</strong>
+                </a>
+            </p>
+            <p>After payment, click below to confirm via WhatsApp</p>
+            <a id="whatsappLink" target="_blank">Confirm Order on WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("deliveryForm");
+        const paymentInfo = document.getElementById("paymentInfo");
+        const whatsappLink = document.getElementById("whatsappLink");
+        const upiLink = document.getElementById("upiLink");
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const product = params.get("product");
+        const amount = params.get("amount");
+        const formattedAmount = parseFloat(amount).toFixed(2);
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const msg = `
+*Order Details:*
+Product: ${product}
+Amount: ₹${amount}
+
+*Customer Info:*
+Name: ${data.get("name")}
+Address: ${data.get("address")}
+House/Shop No.: ${data.get("house")}
+Landmark: ${data.get("landmark")}
+City: ${data.get("city")}
+District: ${data.get("district")}
+State: ${data.get("state")}
+Pincode: ${data.get("pincode")}
+Phone: ${data.get("phone")}
+Paid to: hixzam313@okaxis ✅
+            `.trim();
+
+            const upiUrl = `upi://pay?pa=hixzam313@okaxis&am=${formattedAmount}`;
+            
+            upiLink.href = upiUrl;
+            whatsappLink.href = `https://wa.me/919744340057?text=${encodeURIComponent(msg)}`;
+            
+            paymentInfo.style.display = "block";
+            form.style.display = "none";
+        });
+    </script>
+</body>
+</html>
