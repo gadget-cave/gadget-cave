@@ -1,168 +1,240 @@
+/* Universal Styles */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
+/* Header and Navigation */
 header {
-  background-color: #fff;
-  padding: 10px 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-}
-
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+    background-color: #101010;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo {
-  height: 85px;
-  width: auto;
+    display: flex;
+    align-items: center;
 }
 
-h1 {
-  font-size: 1.8em;
-  margin: 0;
-  color: #333;
+.logo img {
+    height: 50px;
+    margin-right: 10px;
 }
 
-#search-bar {
-  margin-top: 10px;
-  padding: 10px;
-  width: 95%;
-  max-width: 600px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#search {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 200px;
+    margin-top: 10px;
+}
+
+#categories {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+#categories button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#categories button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 #product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px 10px;
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .product {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 280px;
-  max-height: 350px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
 }
 
 .product img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: contain;
-  margin-bottom: 10px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
-.product h2 {
-  font-size: 1em;
-  margin: 5px 0;
+.product h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
 }
 
 .product p {
-  font-size: 0.9em;
-  color: #555;
+    font-size: 1.1em;
+    color: #ff5722;
+    font-weight: bold;
+    margin: 5px 0;
 }
 
-.product strong {
-  font-size: 1em;
-  color: #000;
+.buy-button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
-.whatsapp-btn {
-  background-color: #25D366;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+.buy-button:hover {
+    background-color: #e64a19;
 }
 
-.whatsapp-btn:hover {
-  background-color: #20b358;
-}
-
+/* Footer */
 footer {
-  background-color: #000;
-  color: white;
-  text-align: center;
-  padding: 15px 10px;
-  font-size: 14px;
+    text-align: center;
+    padding: 20px;
+    background-color: #101010;
+    color: white;
+    margin-top: 20px;
 }
 
-/* Popup styles */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+/* --- Buy Page Specific Styles --- */
+
+.buy-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.popup-content {
-  background: white;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  padding: 20px;
-  position: relative;
+.buy-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 22px;
-  cursor: pointer;
-  font-weight: bold;
-  border: none;
-  background: none;
+#deliveryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.popup-content h2 {
-  margin-top: 0;
+#deliveryForm input[type="text"],
+#deliveryForm textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    font-size: 16px;
 }
 
-.popup-content img {
-  max-width: 100%;
-  margin: 10px 0;
-  object-fit: contain;
-  border-radius: 6px;
+#deliveryForm textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
-.popup-description {
-  margin: 10px 0;
-  color: #333;
-  font-size: 1em;
+#deliveryForm button {
+    padding: 12px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-@media (max-width: 600px) {
-  .popup-content {
-    max-width: 95%;
-    max-height: 95%;
-    padding: 15px;
-  }
+#deliveryForm button:hover {
+    background-color: #e64a19;
+}
+
+#paymentInfo {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px dashed #ccc;
+}
+
+#paymentInfo h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#paymentInfo p {
+    margin: 5px 0;
+}
+
+#paymentInfo strong {
+    color: #007bff;
+}
+
+#whatsappLink, #upiLink {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #25d366; /* WhatsApp green */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#upiLink {
+    background-color: #007bff;
+    margin-right: 10px;
+}
+
+#whatsappLink:hover, #upiLink:hover {
+    opacity: 0.9;
+}
+
+/* For better mobile view */
+@media (max-width: 650px) {
+    .buy-container {
+        margin: 20px;
+        padding: 15px;
+    }
 }
