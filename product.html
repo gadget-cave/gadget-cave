@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+<div class="product-details-container">
+
+    <div id="main-product"></div>
+
+    <div id="extra-images"></div>
+
+</div>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBwRIwY_m15FYUrBqztQMBMyYSvSsdfJ_8",
+  authDomain: "gadget-cave-new.firebaseapp.com",
+  projectId: "gadget-cave-new",
+  storageBucket: "gadget-cave-new.firebasestorage.app",
+  messagingSenderId: "670040556331",
+  appId: "1:670040556331:web:5caf0bf8c5452e8e733b6e"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+
+db.collection("products").doc(productId).get().then((doc) => {
+
+    if (!doc.exists) {
+        document.body.innerHTML = "<h2>Product Not Found</h2>";
+        return;
+    }
+
+    const product = doc.data();
+
+    document.getElementById("main-product").innerHTML = `
+        <img class="detail-main-image" src="${product.image}">
+        
+        <h1>${product.name}</h1>
+
+        <h2>₹${product.price}</h2>
+
+        <p class="product-description">
+            ${product.description || ""}
+        </p>
+
+        <button
+            class="buy-button"
+            onclick="location.href='buy.html?id=${productId}&product=${encodeURIComponent(product.name)}&amount=${product.price}'">
+            Buy Now
+        </button>
+    `;
+
+    let gallery = "";
+
+    if(product.extraImages && product.extraImages.length){
+
+        product.extraImages.forEach(img => {
+
+            gallery += `
+                <img class="extra-image" src="${img}">
+            `;
+
+        });
+
+    }
+
+    document.getElementById("extra-images").innerHTML = gallery;
+
+});
+
+</script>
+
+</body>
+</html>
