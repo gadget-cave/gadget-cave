@@ -1,4 +1,7 @@
-/* Universal Styles */
+/* =========================
+   UNIVERSAL STYLES
+========================= */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,7 +10,10 @@ body {
     color: #333;
 }
 
-/* Header and Navigation */
+/* =========================
+   HEADER
+========================= */
+
 header {
     background-color: #101010;
     color: white;
@@ -41,6 +47,10 @@ header {
     margin-top: 10px;
 }
 
+/* =========================
+   CATEGORY BUTTONS
+========================= */
+
 #categories {
     text-align: center;
     padding: 10px 0;
@@ -59,14 +69,17 @@ header {
     background-color: #f0f0f0;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 #categories button:hover {
     background-color: #e0e0e0;
 }
 
-/* Main Content */
+/* =========================
+   MAIN
+========================= */
+
 main {
     padding: 20px;
     max-width: 1200px;
@@ -79,13 +92,18 @@ main {
     gap: 20px;
 }
 
+/* =========================
+   PRODUCT CARD
+========================= */
+
 .product {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
     padding: 15px;
-    transition: transform 0.2s;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .product:hover {
@@ -94,31 +112,34 @@ main {
 
 .product img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .product h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
+    margin-top: 12px;
+    margin-bottom: 8px;
 }
 
 .product p {
-    font-size: 1.1em;
     color: #ff5722;
     font-weight: bold;
-    margin: 5px 0;
+    font-size: 18px;
 }
+
+/* =========================
+   BUY BUTTON
+========================= */
 
 .buy-button {
     background-color: #ff5722;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 18px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     margin-top: 10px;
 }
 
@@ -126,7 +147,10 @@ main {
     background-color: #e64a19;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     text-align: center;
     padding: 20px;
@@ -135,21 +159,21 @@ footer {
     margin-top: 20px;
 }
 
-/* --- Buy Page Specific Styles --- */
+/* =========================
+   BUY PAGE
+========================= */
 
 .buy-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #fff;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .buy-container h2 {
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
 }
 
 #deliveryForm {
@@ -158,124 +182,146 @@ footer {
     gap: 15px;
 }
 
-#deliveryForm input[type="text"],
+#deliveryForm input,
 #deliveryForm textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    box-sizing: border-box;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding doesn't affect total width */
-    font-size: 16px;
+    border: 1px solid #ddd;
 }
 
 #deliveryForm textarea {
-    resize: vertical;
     min-height: 100px;
+    resize: vertical;
 }
 
 #deliveryForm button {
-    padding: 12px 20px;
+    padding: 12px;
     background-color: #ff5722;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 17px;
     cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-#deliveryForm button:hover {
-    background-color: #e64a19;
 }
 
 #paymentInfo {
     text-align: center;
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
     border: 1px dashed #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
 }
 
-#paymentInfo h3 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-#paymentInfo p {
-    margin: 5px 0;
-}
-
-#paymentInfo strong {
-    color: #007bff;
-}
-
-#whatsappLink, #upiLink {
+#whatsappLink,
+#upiLink {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #25d366; /* WhatsApp green */
-    color: white;
     text-decoration: none;
     border-radius: 5px;
+    color: white;
     font-weight: bold;
 }
 
+#whatsappLink {
+    background: #25d366;
+}
+
 #upiLink {
-    background-color: #007bff;
-    margin-right: 10px;
+    background: #007bff;
 }
 
-#whatsappLink:hover, #upiLink:hover {
-    opacity: 0.9;
+/* =========================
+   PRODUCT DETAILS PAGE
+========================= */
+
+.product-details-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-/* For better mobile view */
-@media (max-width: 650px) {
-    .buy-container {
-        margin: 20px;
+.detail-main-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.product-details-container h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.product-details-container h2 {
+    color: #ff5722;
+    margin-bottom: 15px;
+}
+
+.product-description {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+/* =========================
+   EXTRA IMAGE GALLERY
+========================= */
+
+#extra-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.extra-image {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.extra-image:hover {
+    transform: scale(1.03);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #search {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .product img {
+        height: 180px;
+    }
+
+    .product-details-container {
+        margin: 15px;
         padding: 15px;
     }
-}
-.product-details-container{
-    max-width:900px;
-    margin:30px auto;
-    padding:20px;
-    background:#fff;
-    border-radius:12px;
-}
 
-.detail-main-image{
-    width:100%;
-    max-height:500px;
-    object-fit:contain;
-    border-radius:10px;
-}
+    .detail-main-image {
+        max-height: 350px;
+    }
 
-.product-description{
-    margin-top:20px;
-    line-height:1.8;
-    font-size:16px;
-}
-
-#extra-images{
-    margin-top:25px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-
-    gap:15px;
-}
-
-.extra-image{
-    width:100%;
-    border-radius:10px;
-}
-
-.extra-image:hover{
-    transform:scale(1.03);
-    transition:.3s;
+    .buy-container {
+        margin: 15px;
+        padding: 15px;
+    }
 }
