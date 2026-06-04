@@ -5,130 +5,228 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="U5x6ESJ1YnKH0odXTveWzCIbAv_ZTtKLIyBOrKxvRXM" />
   <title>Gadget Cave</title>
+
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <a href="admin.html">
-                <img src="https://i.ibb.co/SD2HhQRW/gadged-cave-3.png" alt="Gadget Cave Logo" />
-            </a>
-            <h1>Gadget Cave</h1>
-        </div>
-        <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()" />
-    </header>
 
-    <nav id="categories">
-        <button onclick="filterCategory('All')">All</button>
-        <button onclick="filterCategory('Earphones')">Earphones</button>
-        <button onclick="filterCategory('Watches')">Watches</button>
-        <button onclick="filterCategory('Speakers')">Speakers</button>
-        <button onclick="filterCategory('Trimmers')">Trimmers</button>
-        <button onclick="filterCategory('Headphones')">Headphones</button>
-        <button onclick="filterCategory('Smartwatches')">Smartwatches</button>
-        <button onclick="filterCategory('Combos')">Combos</button>
-        <button onclick="filterCategory('Powerbanks')">Powerbanks</button>
-        <button onclick="filterCategory('Other')">Other</button>
-    </nav>
+<header>
+    <div class="logo">
+        <a href="admin.html">
+            <img src="https://i.ibb.co/SD2HhQRW/gadged-cave-3.png" alt="Gadget Cave Logo">
+        </a>
+        <h1>Gadget Cave</h1>
+    </div>
 
-    <main id="product-list"></main>
+    <input
+        type="text"
+        id="search"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+    >
+</header>
 
-    <footer>
-        <p>gadget cave</p>
-    </footer>
+<nav id="categories">
+    <button onclick="filterCategory('All')">All</button>
+    <button onclick="filterCategory('Earphones')">Earphones</button>
+    <button onclick="filterCategory('Watches')">Watches</button>
+    <button onclick="filterCategory('Speakers')">Speakers</button>
+    <button onclick="filterCategory('Trimmers')">Trimmers</button>
+    <button onclick="filterCategory('Headphones')">Headphones</button>
+    <button onclick="filterCategory('Smartwatches')">Smartwatches</button>
+    <button onclick="filterCategory('Combos')">Combos</button>
+    <button onclick="filterCategory('Powerbanks')">Powerbanks</button>
+    <button onclick="filterCategory('Other')">Other</button>
+</nav>
 
-    <script>
-        // Your new Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyBwRIwY_m15FYUrBqztQMBMyYSvSsdfJ_8",
-          authDomain: "gadget-cave-new.firebaseapp.com",
-          projectId: "gadget-cave-new",
-          storageBucket: "gadget-cave-new.firebasestorage.app",
-          messagingSenderId: "670040556331",
-          appId: "1:670040556331:web:5caf0bf8c5452e8e733b6e"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+<main id="product-list"></main>
 
-        // Fetch all products from the database on page load
-        db.collection("products").get().then((querySnapshot) => {
-            const products = [];
-            querySnapshot.forEach((doc) => {
-                const product = doc.data();
-                product.id = doc.id;
-                products.push(product);
+<footer>
+    <p>gadget cave</p>
+</footer>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBwRIwY_m15FYUrBqztQMBMyYSvSsdfJ_8",
+  authDomain: "gadget-cave-new.firebaseapp.com",
+  projectId: "gadget-cave-new",
+  storageBucket: "gadget-cave-new.firebasestorage.app",
+  messagingSenderId: "670040556331",
+  appId: "1:670040556331:web:5caf0bf8c5452e8e733b6e"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+loadProducts();
+
+function loadProducts() {
+
+    db.collection("products")
+    .get()
+    .then((querySnapshot) => {
+
+        const products = [];
+
+        querySnapshot.forEach((doc) => {
+
+            products.push({
+                id: doc.id,
+                ...doc.data()
             });
-            displayProducts(products);
-        }).catch(error => {
-            console.error("Error fetching documents: ", error);
+
         });
 
-        // --- All other functions ---
-        function displayProducts(productList) {
-            const container = document.getElementById("product-list");
-            container.innerHTML = "";
-            productList.forEach((product) => {
-                const productBox = document.createElement("div");
-                productBox.classList.add("product");
-                productBox.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>₹${product.price}</p>
-                    <button class="buy-button" onclick="buyNow('${product.id}')">Buy Now</button>
-                `;
-                container.appendChild(productBox);
+        displayProducts(products);
+
+    })
+    .catch((error) => {
+
+        console.error("Error fetching products:", error);
+
+    });
+}
+
+function displayProducts(productList) {
+
+    const container = document.getElementById("product-list");
+
+    container.innerHTML = "";
+
+    productList.forEach((product) => {
+
+        const productBox = document.createElement("div");
+
+        productBox.classList.add("product");
+
+        productBox.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>₹${product.price}</p>
+
+            <button
+                class="buy-button"
+                onclick="event.stopPropagation(); buyNow('${product.id}')">
+                Buy Now
+            </button>
+        `;
+
+        productBox.style.cursor = "pointer";
+
+        productBox.addEventListener("click", () => {
+
+            window.location.href =
+            `product.html?id=${product.id}`;
+
+        });
+
+        container.appendChild(productBox);
+
+    });
+}
+
+function filterCategory(category) {
+
+    db.collection("products")
+    .get()
+    .then((querySnapshot) => {
+
+        const products = [];
+
+        querySnapshot.forEach((doc) => {
+
+            products.push({
+                id: doc.id,
+                ...doc.data()
             });
+
+        });
+
+        if (category === "All") {
+
+            displayProducts(products);
+
+        } else {
+
+            const filteredProducts = products.filter(
+                product => product.category === category
+            );
+
+            displayProducts(filteredProducts);
+
         }
 
-        function filterCategory(category) {
-            db.collection("products").get().then((querySnapshot) => {
-                const products = [];
-                querySnapshot.forEach((doc) => {
-                    products.push({ id: doc.id, ...doc.data() });
-                });
-                if (category === "All") {
-                    displayProducts(products);
-                } else {
-                    const filtered = products.filter(p => p.category === category);
-                    displayProducts(filtered);
-                }
-            }).catch(error => {
-                console.error("Error fetching documents: ", error);
-            });
-        }
+    });
+}
 
-        function searchProducts() {
-            const searchTerm = document.getElementById("search").value.toLowerCase();
-            db.collection("products").get().then((querySnapshot) => {
-                const products = [];
-                querySnapshot.forEach((doc) => {
-                    products.push({ id: doc.id, ...doc.data() });
-                });
-                const filteredProducts = products.filter(product => {
-                    return product.name.toLowerCase().includes(searchTerm);
-                });
-                displayProducts(filteredProducts);
-            }).catch(error => {
-                console.error("Error fetching documents: ", error);
-            });
-        }
+function searchProducts() {
 
-        function buyNow(productId) {
-            db.collection("products").doc(productId).get().then((doc) => {
-                if (doc.exists) {
-                    const product = doc.data();
-                    const productName = encodeURIComponent(product.name);
-                    const productPrice = product.price;
-                    window.location.href = `buy.html?id=${productId}&product=${productName}&amount=${productPrice}`;
-                }
-            }).catch(error => {
-                console.error("Error fetching document: ", error);
+    const searchTerm =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
+
+    db.collection("products")
+    .get()
+    .then((querySnapshot) => {
+
+        const products = [];
+
+        querySnapshot.forEach((doc) => {
+
+            products.push({
+                id: doc.id,
+                ...doc.data()
             });
-        }
-    </script>
+
+        });
+
+        const filteredProducts =
+        products.filter(product =>
+            product.name.toLowerCase()
+            .includes(searchTerm)
+        );
+
+        displayProducts(filteredProducts);
+
+    });
+}
+
+function buyNow(productId) {
+
+    db.collection("products")
+    .doc(productId)
+    .get()
+    .then((doc) => {
+
+        if (!doc.exists) return;
+
+        const product = doc.data();
+
+        const productName =
+        encodeURIComponent(product.name);
+
+        const productPrice =
+        product.price;
+
+        window.location.href =
+        `buy.html?id=${productId}&product=${productName}&amount=${productPrice}`;
+
+    })
+    .catch((error) => {
+
+        console.error(error);
+
+    });
+}
+
+</script>
+
 </body>
 </html>
