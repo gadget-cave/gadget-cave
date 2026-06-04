@@ -1,69 +1,141 @@
 const db = firebase.firestore();
 
-// Fetch all products from the database on page load
-db.collection("products").get().then((querySnapshot) => {
-    const products = [];
-    querySnapshot.forEach((doc) => {
-        const product = doc.data();
-        product.id = doc.id;
-        products.push(product);
-    });
-    displayProducts(products);
-});
+// Load all products on page load
+loadProducts();
 
-// All other functions remain the same as before
+function loadProducts() {
+    db.collection("products")
+        .get()
+        .then((querySnapshot) => {
+            const products = [];
+
+            querySnapshot.forEach((doc) => {
+                products.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            displayProducts(products);
+        })
+        .catch((error) => {
+            console.error("Error fetching products:", error);
+        });
+}
+
 function displayProducts(productList) {
     const container = document.getElementById("product-list");
+
     container.innerHTML = "";
+
     productList.forEach((product) => {
+
         const productBox = document.createElement("div");
+
         productBox.classList.add("product");
+
         productBox.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>₹${product.price}</p>
-            <button class="buy-button" onclick="buyNow('${product.id}')">Buy Now</button>
+
+            <button
+                class="buy-button"
+                onclick="event.stopPropagation(); buyNow('${product.id}')">
+                Buy Now
+            </button>
         `;
+
+        // Clicking product opens product details page
+        productBox.style.cursor = "pointer";
+
+        productBox.addEventListener("click", () => {
+            window.location.href = `product.html?id=${product.id}`;
+        });
+
         container.appendChild(productBox);
     });
 }
 
 function filterCategory(category) {
-    db.collection("products").get().then((querySnapshot) => {
-        const products = [];
-        querySnapshot.forEach((doc) => {
-            products.push({ id: doc.id, ...doc.data() });
+    db.collection("products")
+        .get()
+        .then((querySnapshot) => {
+
+            const products = [];
+
+            querySnapshot.forEach((doc) => {
+                products.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            if (category === "All") {
+                displayProducts(products);
+            } else {
+                const filteredProducts = products.filter(
+                    product => product.category === category
+                );
+
+                displayProducts(filteredProducts);
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching products:", error);
         });
-        if (category === "All") {
-            displayProducts(products);
-        } else {
-            const filtered = products.filter(p => p.category === category);
-            displayProducts(filtered);
-        }
-    });
 }
 
 function searchProducts() {
-    const searchTerm = document.getElementById("search").value.toLowerCase();
-    db.collection("products").get().then((querySnapshot) => {
-        const products = [];
-        querySnapshot.forEach((doc) => {
-            products.push({ id: doc.id, ...doc.data() });
+    const searchTerm = document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    db.collection("products")
+        .get()
+        .then((querySnapshot) => {
+
+            const products = [];
+
+            querySnapshot.forEach((doc) => {
+                products.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(searchTerm)
+            );
+
+            displayProducts(filteredProducts);
+        })
+        .catch((error) => {
+            console.error("Error searching products:", error);
         });
-        const filteredProducts = products.filter(product => {
-            return product.name.toLowerCase().includes(searchTerm);
-        });
-        displayProducts(filteredProducts);
-    });
 }
 
 function buyNow(productId) {
-    db.collection("products").doc(productId).get().then((doc) => {
-        if (doc.exists) {
+    db.collection("products")
+        .doc(productId)
+        .get()
+        .then((doc) => {
+
+            if (!doc.exists) {
+                alert("Product not found.");
+                return;
+            }
+
             const product = doc.data();
+
             const productName = encodeURIComponent(product.name);
             const productPrice = product.price;
-            window.location.href = `buy.html?id=${productId}&product=${productName}&amount=${productPrice}`;
-        }
-    });
+
+            window.location.href =
+                `buy.html?id=${productId}&product=${productName}&amount=${productPrice}`;
+        })
+        .catch((error) => {
+            console.error("Error fetching product:", error);
+        });
 }
